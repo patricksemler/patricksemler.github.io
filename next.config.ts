@@ -1,7 +1,11 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // Emit a fully static site into `out/` for GitHub Pages.
+  output: "export",
+  // Pages serves directories, so emit `/me/index.html` rather than `/me.html`.
+  trailingSlash: true,
+  images: { unoptimized: true },
 };
 
 export default nextConfig;
