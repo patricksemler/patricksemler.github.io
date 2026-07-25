@@ -35,20 +35,42 @@
   --text-display: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);
 }
 
-/* The background colour is set here as well as on body, and the duplication is
-   load-bearing. A page whose root is transparent borrows its canvas colour
-   from body, and iOS paints the rubber-band overscroll strip with that canvas
-   — but under the dark `color-scheme` this document declares, it falls back to
-   the UA's own grey instead of honouring the borrowed colour. Scrolling past
-   either end then showed a grey band, with body::after still laying scanlines
-   over it. Naming the colour on the root removes the borrowing entirely. */
+/* The whole background lives here, colour and texture both, and it has to be
+   the root that carries it.
+
+   A page whose root is transparent borrows its canvas colour from body. iOS
+   paints the rubber-band overscroll strip from that canvas but, under the dark
+   `color-scheme` this document declares, ignores the borrowed colour and uses
+   the UA's grey — so scrolling past either end showed a grey band. Naming the
+   colour here removes the borrowing.
+
+   The texture was a viewport-sized `position: fixed` layer on body::after
+   until iOS 26, which clips fixed painting at the viewport and will not draw
+   it behind the floating browser controls. The page itself renders edge to
+   edge, so the strips under the status bar and the toolbar came out flat while
+   the middle stayed textured. A canvas background has no such limit: it covers
+   the overscroll region and everything behind the browser chrome, and the
+   texture is unbroken.
+
+   The trade is that the scanlines scroll with the document now instead of
+   being pinned to the screen. At a 3px pitch and 3% opacity there is nothing
+   to see in that, and it drops the shimmer a fixed pattern picks up when text
+   slides beneath it.
+
+   body must stay transparent — any opaque background there covers this. */
 html {
   -webkit-text-size-adjust: 100%;
   background-color: var(--color-bg);
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.03) 0px,
+    rgba(255, 255, 255, 0.03) 1px,
+    transparent 1px,
+    transparent 3px
+  );
 }
 
 body {
-  background-color: var(--color-bg);
   color: var(--color-ink);
   font-family: var(--font-mono);
   font-size: 15px;
@@ -84,22 +106,9 @@ body {
   border-color: color-mix(in oklab, var(--color-line-strong) 75%, transparent);
 }
 
-/* The one piece of atmosphere left. Barely visible, never interactive, and
-   gone entirely when the reader asks for plain contrast. */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background-image: repeating-linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0.03) 0px,
-    rgba(255, 255, 255, 0.03) 1px,
-    transparent 1px,
-    transparent 3px
-  );
-}
+/* The one piece of atmosphere left is the scanline texture, and it lives on
+   the root element rather than here — see the note on `html` above for why a
+   fixed overlay could not survive iOS 26. */
 
 /* The name, printed rather than lit.
 
@@ -153,8 +162,8 @@ body::after {
 }
 
 @media (prefers-contrast: more) {
-  body::after {
-    display: none;
+  html {
+    background-image: none;
   }
 }
 
