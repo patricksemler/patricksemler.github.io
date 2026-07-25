@@ -21,22 +21,12 @@ export function Experience() {
 
             <p className="mt-1 text-[0.8125rem] text-dim">{role.company}</p>
 
-            <ul className="mt-4 flex flex-col gap-2.5">
-              {role.bullets.map((bullet) => (
-                <li
-                  key={bullet}
-                  className="relative pl-5 font-sans text-[1rem] leading-[1.7] text-dim"
-                >
-                  <span
-                    aria-hidden
-                    className="absolute top-[0.3em] left-0 font-mono text-[0.75rem] text-faint"
-                  >
-                    ·
-                  </span>
-                  <Metrics text={bullet} />
-                </li>
-              ))}
-            </ul>
+            {/* One line, not three bullets. The bulleted version is the
+                résumé's job, and printing it twice is what made this page a
+                duplicate of the PDF. */}
+            <p className="mt-4 font-sans text-[1rem] leading-[1.7] text-dim">
+              <Metrics text={role.summary} />
+            </p>
 
             <TagList
               items={role.stack}

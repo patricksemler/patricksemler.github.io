@@ -1,8 +1,6 @@
-import { Education } from "@/components/education";
 import { Experience } from "@/components/experience";
 import { Intro } from "@/components/intro";
 import { Projects } from "@/components/projects";
-import { Stack } from "@/components/stack";
 import { profile } from "@/content/profile";
 
 export default function Home() {
@@ -20,11 +18,16 @@ export default function Home() {
       <div className="mx-auto w-full max-w-[52rem] px-6 py-12 sm:px-10 sm:py-14 lg:px-12 lg:py-16">
         <Intro />
 
+        {/* Projects lead. The résumé is linked in the header and covers the
+            employment record in order; what this page adds is the work, so the
+            work goes first and experience corroborates it.
+
+            Education and Stack both came out — the résumé carries the degree
+            and the coursework, and the per-entry tags already say what each
+            thing was built with, which is the only context a tool list has. */}
         <main id="main" className="mt-16 flex flex-col gap-16">
-          <Experience />
           <Projects />
-          <Education />
-          <Stack />
+          <Experience />
         </main>
 
         <footer className="relative z-10 mt-16 border-t border-line pt-6">

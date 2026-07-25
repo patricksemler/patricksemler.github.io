@@ -14,6 +14,21 @@ export function Intro() {
         {`Texas A&M CS ’28 · ${profile.location}`}
       </p>
 
+      {/* The address written out rather than hidden behind the word "Email".
+          It sits directly under the identity line because that is where a
+          reader looks for it, and it takes the signal colour because it is the
+          one thing on this page anyone is meant to act on. Still a mailto —
+          spelling it out costs nothing and works for the people who would
+          rather copy it than have a client opened for them. */}
+      <p className="mt-1.5">
+        <a
+          href={`mailto:${profile.email}`}
+          className="text-[0.875rem] text-cyan underline decoration-transparent decoration-1 underline-offset-[3px] transition-colors hover:decoration-cyan"
+        >
+          {profile.email}
+        </a>
+      </p>
+
       {/* The lead paragraph sits a notch above body prose — it is the only
           thing on the page that has to be read from the top. */}
       <p className="mt-8 font-sans text-[1.0625rem] leading-[1.75] text-dim">

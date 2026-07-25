@@ -1,6 +1,10 @@
 /* ==========================================================================
  * EDIT THIS FILE — it is the only file you need to touch to change what the
- * site says. Content is drawn from Patrick Semler's résumé (July 2026).
+ * site says.
+ *
+ * The résumé is linked in the header and carries the complete record: every
+ * bullet, every date, coursework, honors. So this page does not have to, and
+ * the rule for anything you add here is that it should not try to.
  * ========================================================================== */
 
 export const profile = {
@@ -17,7 +21,6 @@ export const profile = {
   email: "patricksemler@tamu.edu",
 } as const;
 
-
 /* --------------------------------------------------------------------------
  * The opening paragraph. Split into parts so a phrase can carry a link: give
  * a part an `href` and it renders as an inline link, otherwise it is plain
@@ -28,108 +31,37 @@ export type BioPart = { text: string; href?: string };
 export const bio: BioPart[] = [
   { text: "I'm a Computer Science student at " },
   { text: "Texas A&M", href: "https://www.tamu.edu" },
-  { text: ", currently doing machine learning research on veterinary diagnostics. I build full-stack AI systems at " },
+  {
+    text: ", currently doing machine learning research on veterinary diagnostics. I build full-stack AI systems at ",
+  },
   { text: "Apply Finch" },
   { text: ", and before that wrote backtesting and risk infrastructure at " },
   { text: "Maroon Fund" },
+  /* The paragraph hands off to the section below it rather than summing up:
+     both projects are named with just enough of a hook to make scrolling the
+     obvious next move, and the full write-up is eight lines down. */
   { text: ". On my own time I'm building " },
   { text: "LeetMind" },
-  { text: ", an adaptive coding-practice platform, and " },
+  {
+    text: ", an adaptive coding-practice platform that aims each problem at what you are actually weak at, and ",
+  },
   { text: "Phobos" },
-  { text: ", a self-extending AI assistant. National Merit Scholar, 3.79 GPA." },
+  {
+    text: ", a self-hosted AI chief of staff that can safely write and deploy new tools for itself.",
+  },
 ];
 
 /* --------------------------------------------------------------------------
  * Links. `label` is what renders; order is preserved.
+ *
+ * No "Email" entry — the address is written out in full under the name
+ * instead, which is both more visible and one fewer thing to click.
  * ----------------------------------------------------------------------- */
 export const links = [
   { label: "GitHub", href: "https://github.com/patricksemler" },
   { label: "LinkedIn", href: "https://linkedin.com/in/patricksemler" },
-  { label: "Email", href: "mailto:patricksemler@tamu.edu" },
   { label: "Résumé", href: "/resume.pdf" },
 ] as const;
-
-/* --------------------------------------------------------------------------
- * Education.
- * ----------------------------------------------------------------------- */
-export const education = {
-  school: "Texas A&M University",
-  degree: "Bachelor of Science, Computer Science",
-  location: "College Station, TX",
-  graduation: "2028-05",
-  detail: [
-    { label: "gpa", value: "3.79 / 4.00" },
-    {
-      label: "honors",
-      value: "National Merit Scholar · President's Endowed Scholar",
-    },
-    {
-      label: "coursework",
-      value:
-        "Program Design and Concepts · Data Structures and Algorithms · Discrete Math",
-    },
-    {
-      label: "involved",
-      value: "Aggie Coding Club · Aggies Create · TAMUhack · TIDAL",
-    },
-  ],
-} as const;
-
-/* --------------------------------------------------------------------------
- * Experience. Newest first — this renders as a timeline, so order matters.
- * Dates are ISO (`2026-06`); `end: "now"` marks the entry as current.
- * ----------------------------------------------------------------------- */
-export type Role = {
-  company: string;
-  title: string;
-  start: string;
-  end: string;
-  location: string;
-  bullets: string[];
-  stack: string[];
-};
-
-export const experience: Role[] = [
-  {
-    company: "Texas A&M University",
-    title: "Machine Learning Research Assistant",
-    start: "2026-06",
-    end: "now",
-    location: "College Station, TX",
-    bullets: [
-      "Reduced production classifier peak memory by 83% while holding 91% accuracy across 144 veterinary conditions, by tuning random-forest tree count and leaf constraints.",
-      "Eliminated hallucinated care plans in evaluation by grounding a Gemini retrieval-augmented generation pipeline in complete case context — symptoms, vitals, and ranked differential diagnoses.",
-      "Expanded diagnostic coverage to swine and equine (64 new condition mappings) by integrating both species into the filtered prediction pipeline end-to-end, verified with automated endpoint tests.",
-    ],
-    stack: ["Python", "scikit-learn", "Gemini", "RAG"],
-  },
-  {
-    company: "Apply Finch",
-    title: "Full-Stack Developer",
-    start: "2026-01",
-    end: "now",
-    location: "College Station, TX",
-    bullets: [
-      "Built and deployed an AI job-application platform on a 5-developer team that scrapes postings and ranks them via a multi-factor priority score.",
-      "Cut generation cost to under $0.01 per application by routing pipeline stages across cost-optimized LLMs, enforcing one-page output on every document through an automated quality gate.",
-      "Hardened the asynchronous pipeline against 4 failure modes — lost state, duplicate applications, transient database failures, and orphaned scraper runs — via persisted run snapshots, deduplication, retries, and cross-worker cancellation.",
-    ],
-    stack: ["React", "TypeScript", "Flask", "PostgreSQL", "AWS"],
-  },
-  {
-    company: "Maroon Fund",
-    title: "Quantitative Developer",
-    start: "2026-02",
-    end: "2026-05",
-    location: "College Station, TX",
-    bullets: [
-      "Extended risk-adjusted strategy evaluation with 3 benchmark metrics — annualized Jensen's alpha, OLS beta, and tracking error — using SPY data from a 3-source fallback pipeline.",
-      "Consolidated 6 standalone strategy charts into a single interactive Plotly report covering equity, drawdown, trade P&L, and rolling risk metrics.",
-      "Increased backtest fidelity by modeling slippage, commissions, and forced exits; validated the engine, metrics, and reports with an automated pytest suite.",
-    ],
-    stack: ["Python", "Pandas", "Plotly", "pytest"],
-  },
-];
 
 /* --------------------------------------------------------------------------
  * Projects. Not a sequence — order is editorial, so put your best first.
@@ -152,8 +84,8 @@ export const projects: Project[] = [
     lang: "TypeScript",
     status: "active",
     blurb:
-      "An adaptive coding-practice platform that generates progressively harder problems tailored to each user's per-concept strengths and weaknesses. Every problem clears 6 stages of solution, edge-case, and hidden-test verification before release, and the judge sustains 75 submissions per minute with zero dropped jobs.",
-    stack: ["TypeScript", "React", "Fastify", "PostgreSQL", "Docker"],
+      "An adaptive coding-practice platform that generates original problems tailored to each user's per-concept mastery, so every session lands at the edge of their ability. Each generated problem clears a six-stage gate — schema, compile, differential, boundary, example, and mutation checks — before it is ever shown, and the judge holds roughly 75 submissions per minute with zero incomplete jobs.",
+    stack: ["TypeScript", "Python", "React", "Fastify", "PostgreSQL", "Docker"],
     repo: null,
     demo: null,
   },
@@ -162,7 +94,7 @@ export const projects: Project[] = [
     lang: "TypeScript",
     status: "active",
     blurb:
-      "A personal AI assistant exposing 63 natural-language tools across 13 capability modules through a Telegram bot and a realtime React dashboard. A self-extending plugin forge plans and generates new TypeScript modules in isolated Git worktrees, then type-checks, tests, and cross-model reviews them before they land.",
+      "A self-hosted AI chief of staff for one person — 63 natural-language tools across 13 capability modules, reachable from a Telegram bot and a Realtime-synced React dashboard, that tracks habits, watches an inbox and calendar, and messages first. A self-extending forge plans and generates new TypeScript modules in isolated Git worktrees, then gates them behind typecheck, tests, and an independent cross-vendor review; nothing reaches production without human approval, and anything the system writes to itself is one command from a revert.",
     stack: ["TypeScript", "Node.js", "React", "Supabase", "MCP"],
     repo: null,
     demo: null,
@@ -170,28 +102,53 @@ export const projects: Project[] = [
 ];
 
 /* --------------------------------------------------------------------------
- * Stack. Group things the way you would explain them out loud.
+ * Experience. Newest first — this renders as a timeline, so order matters.
+ * Dates are ISO (`2026-06`); `end: "now"` marks the entry as current.
+ *
+ * Deliberately one line each. The full bullets live in the résumé, and
+ * reprinting them here is what made this page a duplicate of the PDF. Give
+ * each role the single sentence you would say out loud, with the number that
+ * makes it real, and let the résumé carry the rest.
  * ----------------------------------------------------------------------- */
-export const stack = [
-  {
-    group: "languages",
-    items: ["TypeScript", "Python", "JavaScript", "C++", "Java", "SQL"],
-  },
-  {
-    group: "frameworks",
-    items: ["React", "Fastify", "Flask", "Node.js", "scikit-learn", "Pandas"],
-  },
-  {
-    group: "data",
-    items: ["PostgreSQL", "Supabase", "Firebase"],
-  },
-  {
-    group: "infrastructure",
-    items: ["Docker", "AWS", "REST APIs", "MCP"],
-  },
-  {
-    group: "everyday",
-    items: ["Git", "GitHub", "pytest", "Plotly"],
-  },
-] as const;
+export type Role = {
+  company: string;
+  title: string;
+  start: string;
+  end: string;
+  location: string;
+  summary: string;
+  stack: string[];
+};
 
+export const experience: Role[] = [
+  {
+    company: "Texas A&M University",
+    title: "Machine Learning Research Assistant",
+    start: "2026-06",
+    end: "now",
+    location: "College Station, TX",
+    summary:
+      "Diagnostic classification across 144 veterinary conditions — cut the production classifier's peak memory by 83% while holding 91% accuracy, and grounded the Gemini RAG pipeline in full case context so it stopped inventing care plans.",
+    stack: ["Python", "scikit-learn", "Gemini", "RAG"],
+  },
+  {
+    company: "Apply Finch",
+    title: "Full-Stack Developer",
+    start: "2026-01",
+    end: "now",
+    location: "College Station, TX",
+    summary:
+      "An AI job-application platform built with a 5-developer team — routed pipeline stages across cost-optimized LLMs to get generation under $0.01 per application, and hardened the async pipeline against 4 failure modes it used to lose work to.",
+    stack: ["React", "TypeScript", "Flask", "PostgreSQL", "AWS"],
+  },
+  {
+    company: "Maroon Fund",
+    title: "Quantitative Developer",
+    start: "2026-02",
+    end: "2026-05",
+    location: "College Station, TX",
+    summary:
+      "Backtesting and risk infrastructure — added Jensen's alpha, OLS beta, and tracking error against a 3-source SPY fallback, and raised backtest fidelity by modeling slippage, commissions, and forced exits.",
+    stack: ["Python", "Pandas", "Plotly", "pytest"],
+  },
+];
