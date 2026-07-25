@@ -1,26 +1,156 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ==========================================================================
+   Design tokens
+
+   A cyan/magenta duotone on deep indigo-black. The theming is carried by
+   type, spacing and two accents rather than by chrome: there is no rail, no
+   status line, no panel furniture. Body copy stays a calm lavender-grey so a
+   dense résumé reads easily, and the accents appear only where they mean
+   something.
+
+     cyan     signal   — links, labels, and the metrics inside bullets
+     magenta  identity — the cursor after the name, the section markers
+
+   Contrast, worst case across bg / surface — all clear WCAG AA:
+     ink 13.5   dim 6.3   faint 4.9   cyan 12.2   magenta 6.5
+   ========================================================================== */
+@theme {
+  --color-bg: #08070f;
+  --color-surface: #0f0d18;
+  --color-line: #241f3a;
+  --color-line-strong: #3b3260;
+  --color-ink: #e2ddf5;
+  --color-dim: #9c94bd;
+  --color-faint: #8880ab;
+
+  --color-cyan: #4fe8ff;
+  --color-magenta: #ff5cc8;
+
+  --font-mono:
+    var(--font-plex-mono), ui-monospace, SFMono-Regular, Menlo, Consolas,
+    monospace;
+  --font-sans: var(--font-plex-sans), ui-sans-serif, system-ui, sans-serif;
+
+  --text-display: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-mono);
+  font-size: 15px;
+  line-height: 1.65;
+  overflow-wrap: break-word;
+}
+
+/* An experience or project entry. At rest it is not a card: no fill, no
+   visible border, nothing that would add panel furniture to a page that has
+   none. Pointing at one warms the ground beneath it and draws a hairline
+   around the whole block — enough to say "this is one thing" and no more.
+
+   The border is always there, transparent until hover, and the padding is a
+   pixel short on every side to pay for it, so the text sits in exactly the
+   same place whether the entry is lit or not. The block bleeds past the text
+   left and right to give the fill room, and its vertical padding is what
+   separates one entry from the next — the list gap was cut to match. */
+.entry {
+  margin-inline: -1rem;
+  padding: calc(0.75rem - 1px) calc(1rem - 1px);
+  border: 1px solid transparent;
+  border-radius: 3px;
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease;
+}
+
+/* focus-within, not just hover — a project title reached by keyboard should
+   light its entry the same way the pointer does. */
+.entry:hover,
+.entry:focus-within {
+  background-color: color-mix(in oklab, var(--color-surface) 65%, transparent);
+  border-color: color-mix(in oklab, var(--color-line-strong) 75%, transparent);
+}
+
+/* The one piece of atmosphere left. Barely visible, never interactive, and
+   gone entirely when the reader asks for plain contrast. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.03) 0px,
+    rgba(255, 255, 255, 0.03) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+/* The name, printed rather than lit.
+
+   A chromatic split was tried three ways and a neon bloom after it; all four
+   were wrong, and for the same reason. A terminal has no light bleed and no
+   misregistration — it draws glyphs into a cell grid and stops. Anything
+   haloed or doubled reads as a sign above a shopfront, which is the one thing
+   this page is not.
+
+   So the name is drawn the way the rest of the page is drawn: one pass of the
+   mono face, no shadow, no offset. What separates it from the lines under it
+   is what separates bright-white from dim-white in a real terminal — weight
+   and value, nothing else. The terminal register is carried by the face, the
+   `//` markers and the scanlines; the heading does not need to carry it too.
+
+   There is no rule here any more. The heading is styled entirely by the
+   utilities on the element itself; this note stays only so the next person
+   does not reach for a glow a fifth time. */
+
+:focus-visible {
+  outline: 2px solid var(--color-cyan);
+  outline-offset: 3px;
+  border-radius: 1px;
+}
+
+/* Skip link — parked above the viewport, brought back by focus. Plain CSS so
+   the cascade is unambiguous: a utility-variant override here is the
+   difference between a working skip link and one nobody can ever see. */
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  transform: translateY(-400%);
+  transition: transform 150ms ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (prefers-contrast: more) {
+  body::after {
+    display: none;
+  }
+}
+
+::selection {
+  background-color: var(--color-cyan);
+  color: var(--color-bg);
 }
