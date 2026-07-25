@@ -35,8 +35,16 @@
   --text-display: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);
 }
 
+/* The background colour is set here as well as on body, and the duplication is
+   load-bearing. A page whose root is transparent borrows its canvas colour
+   from body, and iOS paints the rubber-band overscroll strip with that canvas
+   — but under the dark `color-scheme` this document declares, it falls back to
+   the UA's own grey instead of honouring the borrowed colour. Scrolling past
+   either end then showed a grey band, with body::after still laying scanlines
+   over it. Naming the colour on the root removes the borrowing entirely. */
 html {
   -webkit-text-size-adjust: 100%;
+  background-color: var(--color-bg);
 }
 
 body {
