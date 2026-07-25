@@ -1,94 +1,57 @@
 # Patrick Semler — portfolio
 
-A single-column software engineering portfolio. Deliberately quiet: no
-navigation, no panels, no chrome. The terminal character comes from the
-monospace face, a cyan/magenta duotone, and three small signals — the shell
-path above the name, a resting block cursor, and the `//` section markers.
-Everything else is content and whitespace.
+Live at **[patricksemler.dev](https://patricksemler.dev)**.
+
+My portfolio: one column, no navigation, no panels, nothing that slides in as
+you scroll. I wanted something that felt like a terminal without dressing up as
+one, so the whole effect comes from three small things — the shell path above my
+name, a resting block cursor, and the `//` before each section. Everything else
+is content and whitespace.
 
 Next.js 16 (App Router) · Tailwind CSS 4 · TypeScript · statically prerendered.
 
-## Editing the content
+## The design
 
-**Everything you'll want to change lives in [`content/profile.ts`](content/profile.ts).**
-
-The opening paragraph is the one piece worth attention. It's an array of parts
-so a phrase can carry a link — give a part an `href` and it renders as an inline
-link, leave it off and it's plain text:
-
-```ts
-{ text: "I'm a Computer Science student at " },
-{ text: "Texas A&M", href: "https://www.tamu.edu" },
-```
-
-Two things to check before you publish:
-
-- Only **Texas A&M** is linked in the bio. Apply Finch, Maroon Fund, LeetMind,
-  and Phobos are named but not linked — add `href` values when you have URLs.
-- Both projects have `repo: null` and `demo: null`, so their titles don't link
-  anywhere. Add URLs and the title becomes a link with an `↗` automatically.
-
-The résumé is served from [`public/resume.pdf`](public/resume.pdf).
-
-## Running it
-
-```bash
-npm run dev
-```
-
-Then open http://localhost:3000.
-
-```bash
-npm run build
-```
-
-Every route prerenders to static HTML, so it deploys anywhere.
-
-## How the design works
-
-**Type.** IBM Plex Mono carries the interface — name, headings, dates, tags,
-labels. IBM Plex Sans carries prose meant to be read in paragraphs, so the bio
-and the résumé bullets stay comfortable while everything structural keeps the
+**Type.** IBM Plex Mono does the structural work — name, headings, dates, tags,
+labels. IBM Plex Sans takes over for anything meant to be read in paragraphs, so
+the bio and the résumé bullets stay comfortable while the scaffolding keeps its
 terminal texture.
 
-**Colour.** Two accents on deep indigo-black, used sparingly:
+**Colour.** Two accents on a deep indigo-black, and I use them sparingly:
 
 | Token     | Role                                                    |
 | --------- | ------------------------------------------------------- |
 | `cyan`    | interactive — the shell path, stack labels, link hovers |
-| `magenta` | identity — the cursor after the name, the `//` markers  |
+| `magenta` | identity — the cursor after my name, the `//` markers   |
 
-Body copy is a calm lavender-grey, and the two accents together appear only a
-few dozen times on the whole page. That restraint is what keeps a dense résumé
-readable and the page reading professional rather than costumed.
+Body copy sits in a calm lavender-grey. Between them the two accents show up
+only a few dozen times on the entire page, which is the whole trick: a dense
+résumé stays readable, and the page reads professional instead of costumed.
 
-Figures inside bullets (`83%`, `$0.01`, `75`) are pulled out in cyan by the
-`<Metrics>` helper in [`components/section.tsx`](components/section.tsx). It
-splits prose on numeric tokens, so nothing has to be marked up by hand — this
-is an information-design choice first (recruiters scan for numbers) that
-happens to add colour texture.
+Numbers inside bullets (`83%`, `$0.01`, `75`) get pulled out in cyan
+automatically — the `<Metrics>` helper in
+[`components/section.tsx`](components/section.tsx) splits prose on numeric
+tokens so I never have to mark them up by hand. That started as an
+information-design decision (recruiters scan for figures) and turned out to add
+exactly the colour texture the page needed.
 
-Dates are ISO (`2026-06 → present`), set in `content/profile.ts`.
-
-**Layout.** One 46rem column, centred, with large gaps between sections. There
-is no navigation because the page is short enough not to need it — removing it
-was the single biggest simplification.
-
-- Section headers are `// LABEL`: a magenta marker and the label, nothing else.
-
-Tokens live in [`app/globals.css`](app/globals.css).
+**Layout.** A single 46rem column, centred, with generous gaps between sections.
+There's no nav because the page isn't long enough to warrant one — cutting it
+was the biggest simplification I made. Section headers are just `// LABEL`: a
+magenta marker, the label, nothing else. Design tokens live in
+[`app/globals.css`](app/globals.css).
 
 ## Accessibility
 
-Built to WCAG 2.2 AA and verified against the rendered DOM, not by eye:
+Built to WCAG 2.2 AA and checked against the rendered DOM rather than by eye:
 
 - Zero contrast failures across all rendered text.
-- One `h1` and a clean `H1 → H2 → H3` outline; labelled landmarks; no duplicate
-  IDs; every link has an accessible name.
-- A working skip link (verified with a real Tab press) and a visible focus ring
-  on every interactive element.
-- Profile links are padded to clear the 24px target minimum (§2.5.8) — they're a
-  standalone nav row, so the inline-text exception doesn't apply to them.
+- One `h1` and a clean `H1 → H2 → H3` outline, labelled landmarks, no duplicate
+  IDs, and an accessible name on every link.
+- A skip link that actually works (verified with a real Tab press) and a visible
+  focus ring on everything interactive.
+- Profile links are padded past the 24px target minimum (§2.5.8) — they're a
+  standalone nav row, so the inline-text exception doesn't cover them.
 - No horizontal scroll at 320px.
-- `prefers-reduced-motion` disables transitions; `prefers-contrast: more` drops
+- `prefers-reduced-motion` turns off transitions; `prefers-contrast: more` drops
   the scanline texture.
