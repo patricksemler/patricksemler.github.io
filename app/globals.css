@@ -99,11 +99,27 @@ body {
 }
 
 /* focus-within, not just hover — a project title reached by keyboard should
-   light its entry the same way the pointer does. */
-.entry:hover,
+   light its entry the same way the pointer does. Focus is a real state on
+   every device, so it is not gated. */
 .entry:focus-within {
   background-color: color-mix(in oklab, var(--color-surface) 65%, transparent);
   border-color: color-mix(in oklab, var(--color-line-strong) 75%, transparent);
+}
+
+/* Hover is gated because a touchscreen does not have one. Where it is
+   emulated, it fires on touch-down and then stays until something else is
+   tapped — so beginning a scroll with a thumb resting on an entry lit it up
+   and left it lit, which reads as having chosen the thing rather than having
+   scrolled past it. Pointing is a hover; touching is not.
+
+   Tailwind gates its own `hover:` variants this way already, which is why the
+   project links never had the problem. This rule is hand-written and was the
+   one that escaped. */
+@media (hover: hover) {
+  .entry:hover {
+    background-color: color-mix(in oklab, var(--color-surface) 65%, transparent);
+    border-color: color-mix(in oklab, var(--color-line-strong) 75%, transparent);
+  }
 }
 
 /* The one piece of atmosphere left is the scanline texture, and it lives on
