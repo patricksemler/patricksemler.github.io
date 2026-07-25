@@ -8,7 +8,11 @@ export function Experience() {
       <ol className="-my-3 flex flex-col gap-4">
         {experience.map((role) => (
           <li key={`${role.company}-${role.start}`} className="entry">
-            <div className="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-1">
+            {/* Stacked on narrow screens. Left to wrap, the date sits beside
+                short titles and under long ones, so the column of dates moves
+                from entry to entry; it only shares the line once there is
+                reliably room for every title. */}
+            <div className="flex flex-col gap-1 sm:flex-row sm:flex-wrap sm:items-baseline sm:justify-between sm:gap-x-8">
               <h3 className="text-[1rem] font-medium text-ink">{role.title}</h3>
               <p className="text-[0.75rem] text-faint tabular-nums">
                 {role.start}
