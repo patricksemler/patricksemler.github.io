@@ -1,0 +1,45 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  viewBox="0 0 32 32"
+  shape-rendering="crispEdges"
+>
+  <!-- PS as bitmap-terminal type inside a cyan frame.
+
+       The grid is 32 units for a 16px icon, so every dimension here is an even
+       number and lands on a device pixel at 16px as well as 32 and 48. That
+       constraint is what fixes the letterforms: the classic 5x7 terminal cell
+       at double scale — 2-unit strokes, 10x14, one cell of letterspacing. A
+       larger glyph would need 3-unit strokes, which is a pixel and a half at
+       16px and blurs.
+
+       An earlier pass split the letters into cyan and magenta copies for a
+       chromatic-aberration effect. It reads at 48px and turns to noise at 16,
+       where the fringe is one pixel against a two-pixel stroke, so the frame
+       won instead. Colours are the globals.css tokens.-->
+  <defs>
+    <!-- No fill here — the <use> below supplies it, inherited by the rects.
+         The P's bowl stays open at top-right and bottom-right; closing it
+         would leave a counter one pixel wide at 16px, which fills in. -->
+    <g id="ps">
+      <rect x="5" y="9" width="2" height="14" />
+      <rect x="5" y="9" width="8" height="2" />
+      <rect x="13" y="11" width="2" height="4" />
+      <rect x="5" y="15" width="8" height="2" />
+
+      <rect x="19" y="9" width="8" height="2" />
+      <rect x="17" y="11" width="2" height="4" />
+      <rect x="19" y="15" width="6" height="2" />
+      <rect x="25" y="17" width="2" height="4" />
+      <rect x="17" y="21" width="8" height="2" />
+    </g>
+  </defs>
+
+  <!-- The frame is a cyan tile with the background laid back over its middle,
+       rather than a stroked rect: a stroke straddles its path and would put
+       half a unit on each side of the edge, which is a quarter pixel at 16px. -->
+  <rect width="32" height="32" rx="4" fill="#4fe8ff" />
+  <rect x="2" y="2" width="28" height="28" rx="2" fill="#08070f" />
+
+  <use href="#ps" xlink:href="#ps" fill="#e2ddf5" />
+</svg>
