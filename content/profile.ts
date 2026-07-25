@@ -39,7 +39,7 @@ export const bio: BioPart[] = [
   { text: "Maroon Fund" },
   /* The paragraph hands off to the section below it rather than summing up:
      both projects are named with just enough of a hook to make scrolling the
-     obvious next move, and the full write-up is eight lines down. */
+     obvious next move, and Projects is the very next thing on the page. */
   { text: ". On my own time I'm building " },
   { text: "LeetMind" },
   {
@@ -65,11 +65,16 @@ export const links = [
 
 /* --------------------------------------------------------------------------
  * Projects. Not a sequence — order is editorial, so put your best first.
- * `status` is one of: "active" | "shipped" | "archived"
- * Set `repo` or `demo` to null to hide that link.
+ *
+ * The title links to `repo`, falling back to `demo`; leave both null and it
+ * renders as plain text with no arrow.
  * ----------------------------------------------------------------------- */
 export type Project = {
   name: string;
+  /** Neither `lang` nor `status` is rendered — the stack tags already say what
+   *  a project is written in, and a status pill was the kind of chrome this
+   *  page is trying not to have. Kept as metadata; `status` is one of
+   *  "active" | "shipped" | "archived". */
   lang: string;
   status: "active" | "shipped" | "archived";
   blurb: string;
@@ -115,6 +120,9 @@ export type Role = {
   title: string;
   start: string;
   end: string;
+  /** Not rendered — every role so far has been in the same city as the one
+   *  under my name, so printing it on each entry was three repetitions of a
+   *  line the header already carries. */
   location: string;
   summary: string;
   stack: string[];

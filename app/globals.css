@@ -9,11 +9,14 @@
    dense résumé reads easily, and the accents appear only where they mean
    something.
 
-     cyan     signal   — links, labels, and the metrics inside bullets
-     magenta  identity — the cursor after the name, the section markers
+     cyan     signal   — the email address, the figures pulled out of the
+                          prose, link and tag hovers, the focus ring
+     magenta  identity — the `//` section markers, and nothing else
 
-   Contrast, worst case across bg / surface — all clear WCAG AA:
-     ink 13.5   dim 6.3   faint 4.9   cyan 12.2   magenta 6.5
+   Contrast, worst case over every background a glyph can land on — the
+   canvas, a scanline row, and the entry hover fill over either — all clear
+   WCAG AA:
+     ink 14.4   dim 6.7   faint 5.2   cyan 13.0   magenta 6.9
    ========================================================================== */
 @theme {
   --color-bg: #08070f;
