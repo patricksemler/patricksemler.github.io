@@ -1,45 +1,37 @@
-<svg
-  xmlns="http://www.w3.org/2000/svg"
-  xmlns:xlink="http://www.w3.org/1999/xlink"
-  viewBox="0 0 32 32"
-  shape-rendering="crispEdges"
->
-  <!-- PS as bitmap-terminal type inside a cyan frame.
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- The icon, for every surface: browser tab, iOS and Android home
+       screens, and the PWA manifest. Every raster below is rendered from
+       this file, so there is one mark and it cannot drift.
 
-       The grid is 32 units for a 16px icon, so every dimension here is an even
-       number and lands on a device pixel at 16px as well as 32 and 48. That
-       constraint is what fixes the letterforms: the classic 5x7 terminal cell
-       at double scale — 2-unit strokes, 10x14, one cell of letterspacing. A
-       larger glyph would need 3-unit strokes, which is a pixel and a half at
-       16px and blurs.
+       A tab renders this at 16 CSS pixels and nothing can make it bigger,
+       but it is a vector, so one file covers 16px and 512px alike.
 
-       An earlier pass split the letters into cyan and magenta copies for a
-       chromatic-aberration effect. It reads at 48px and turns to noise at 16,
-       where the fringe is one pixel against a two-pixel stroke, so the frame
-       won instead. Colours are the globals.css tokens.-->
+       PS_ set in IBM Plex Mono Medium — the same font file and weight as the
+       project names, with the outlines extracted to paths because an SVG icon
+       renders without the page's stylesheet, and a font-family reference would
+       fall back to whatever the browser happens to have.
+
+       The underscore is doing the work. Two capitals alone cannot read as
+       monospace, because fixed pitch is a rhythm you only see across a line;
+       the trailing cursor is what makes the mark a terminal rather than two
+       letters in a plain grotesque.
+
+       Corners are square on purpose — iOS squircles and Android adaptive
+       masks both crop the source, so rounding here would be clipped twice and
+       show up as a dark ring inside the mask. -->
   <defs>
-    <!-- No fill here — the <use> below supplies it, inherited by the rects.
-         The P's bowl stays open at top-right and bottom-right; closing it
-         would leave a counter one pixel wide at 16px, which fills in. -->
     <g id="ps">
-      <rect x="5" y="9" width="2" height="14" />
-      <rect x="5" y="9" width="8" height="2" />
-      <rect x="13" y="11" width="2" height="4" />
-      <rect x="5" y="15" width="8" height="2" />
-
-      <rect x="19" y="9" width="8" height="2" />
-      <rect x="17" y="11" width="2" height="4" />
-      <rect x="19" y="15" width="6" height="2" />
-      <rect x="25" y="17" width="2" height="4" />
-      <rect x="17" y="21" width="8" height="2" />
+      <path transform="matrix(0.01389 0 0 -0.01389 3.333 20.847)" d="M84.00 0.00V698.00H345.00Q445.00 698.00 497.50 642.00Q550.00 586.00 550.00 488.00Q550.00 390.00 497.50 334.00Q445.00 278.00 345.00 278.00H196.00V0.00ZM196.00 371.00H328.00Q432.00 371.00 432.00 467.00V510.00Q432.00 605.00 328.00 605.00H196.00ZM894.00 -12.00Q803.00 -12.00 741.00 20.00Q679.00 52.00 639.00 105.00L711.00 174.00Q751.00 126.00 796.00 103.50Q841.00 81.00 898.00 81.00Q964.00 81.00 999.50 111.00Q1035.00 141.00 1035.00 197.00Q1035.00 242.00 1009.00 266.50Q983.00 291.00 920.00 302.00L844.00 314.00Q794.00 322.00 760.00 340.50Q726.00 359.00 705.00 384.50Q684.00 410.00 674.50 441.50Q665.00 473.00 665.00 508.00Q665.00 607.00 729.00 658.50Q793.00 710.00 905.00 710.00Q988.00 710.00 1046.50 683.50Q1105.00 657.00 1141.00 609.00L1071.00 539.00Q1042.00 574.00 1002.50 595.50Q963.00 617.00 905.00 617.00Q843.00 617.00 810.50 590.50Q778.00 564.00 778.00 513.00Q778.00 470.00 803.50 445.50Q829.00 421.00 894.00 410.00L968.00 397.00Q1062.00 380.00 1105.00 328.50Q1148.00 277.00 1148.00 203.00Q1148.00 155.00 1131.50 115.00Q1115.00 75.00 1082.50 47.00Q1050.00 19.00 1002.50 3.50Q955.00 -12.00 894.00 -12.00ZM1260.00 -179.00V-85.00H1740.00V-179.00Z"/>
     </g>
+    <!-- The page's scanline texture at its 1-on-3 duty cycle. It only resolves
+         above roughly 64px, so it is texture on a home screen and nothing at
+         all in a tab — which is the point of one file serving both. -->
+    <pattern id="scan" width="1" height="0.5" patternUnits="userSpaceOnUse">
+      <rect width="1" height="0.1667" fill="#ffffff" opacity="0.03"/>
+    </pattern>
   </defs>
 
-  <!-- The frame is a cyan tile with the background laid back over its middle,
-       rather than a stroked rect: a stroke straddles its path and would put
-       half a unit on each side of the edge, which is a quarter pixel at 16px. -->
-  <rect width="32" height="32" rx="4" fill="#4fe8ff" />
-  <rect x="2" y="2" width="28" height="28" rx="2" fill="#08070f" />
-
-  <use href="#ps" xlink:href="#ps" fill="#e2ddf5" />
+  <rect width="32" height="32" rx="0" fill="#08070f"/>
+  <use href="#ps" fill="#e2ddf5"/>
+  <rect width="32" height="32" fill="url(#scan)"/>
 </svg>
