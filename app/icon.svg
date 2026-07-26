@@ -11,17 +11,36 @@
        renders without the page's stylesheet, and a font-family reference would
        fall back to whatever the browser happens to have.
 
-       The underscore is doing the work. Two capitals alone cannot read as
+       The cursor is doing the work. Two capitals alone cannot read as
        monospace, because fixed pitch is a rhythm you only see across a line;
-       the trailing cursor is what makes the mark a terminal rather than two
-       letters in a plain grotesque.
+       the trailing block is what makes the mark a terminal rather than two
+       letters in a plain grotesque. It was an underscore first, which said the
+       same thing more quietly and in the same colour as the letters — the
+       magenta block says it in the accent the page already spends on exactly
+       this, the cursor after the name.
 
        Corners are square on purpose — iOS squircles and Android adaptive
        masks both crop the source, so rounding here would be clipped twice and
-       show up as a dark ring inside the mask. -->
+       show up as a dark ring inside the mask.
+
+       The mark is printed out of register the same way the page prints ink:
+       one cyan pass a hairline left, one magenta pass a hairline right, the
+       ink laid over both. The offset is the page's 0.035em expressed in this
+       file's units — the glyphs are drawn at 1/72, so an em is 13.89 units and
+       the fringe is 0.49 of one. Matching the typographic amount rather than a
+       pixel count is what keeps the mark and the heading looking like one
+       system at every size.
+
+       Like the scanlines, it resolves only above roughly 64px: a favicon puts
+       the fringe at a quarter of a pixel, where it is simply not there, while a
+       192px home screen gets nearly three. One file, honest at both ends.
+
+       The three passes are wrapped in `mark` so the maskable variant can be
+       derived from this same file by injecting a scale onto that one group —
+       nothing about the artwork is duplicated to make it. -->
   <defs>
     <g id="ps">
-      <path transform="matrix(0.01389 0 0 -0.01389 3.333 20.847)" d="M84.00 0.00V698.00H345.00Q445.00 698.00 497.50 642.00Q550.00 586.00 550.00 488.00Q550.00 390.00 497.50 334.00Q445.00 278.00 345.00 278.00H196.00V0.00ZM196.00 371.00H328.00Q432.00 371.00 432.00 467.00V510.00Q432.00 605.00 328.00 605.00H196.00ZM894.00 -12.00Q803.00 -12.00 741.00 20.00Q679.00 52.00 639.00 105.00L711.00 174.00Q751.00 126.00 796.00 103.50Q841.00 81.00 898.00 81.00Q964.00 81.00 999.50 111.00Q1035.00 141.00 1035.00 197.00Q1035.00 242.00 1009.00 266.50Q983.00 291.00 920.00 302.00L844.00 314.00Q794.00 322.00 760.00 340.50Q726.00 359.00 705.00 384.50Q684.00 410.00 674.50 441.50Q665.00 473.00 665.00 508.00Q665.00 607.00 729.00 658.50Q793.00 710.00 905.00 710.00Q988.00 710.00 1046.50 683.50Q1105.00 657.00 1141.00 609.00L1071.00 539.00Q1042.00 574.00 1002.50 595.50Q963.00 617.00 905.00 617.00Q843.00 617.00 810.50 590.50Q778.00 564.00 778.00 513.00Q778.00 470.00 803.50 445.50Q829.00 421.00 894.00 410.00L968.00 397.00Q1062.00 380.00 1105.00 328.50Q1148.00 277.00 1148.00 203.00Q1148.00 155.00 1131.50 115.00Q1115.00 75.00 1082.50 47.00Q1050.00 19.00 1002.50 3.50Q955.00 -12.00 894.00 -12.00ZM1260.00 -179.00V-85.00H1740.00V-179.00Z"/>
+      <path transform="matrix(0.01389 0 0 -0.01389 3.333 20.847)" d="M84.00 0.00V698.00H345.00Q445.00 698.00 497.50 642.00Q550.00 586.00 550.00 488.00Q550.00 390.00 497.50 334.00Q445.00 278.00 345.00 278.00H196.00V0.00ZM196.00 371.00H328.00Q432.00 371.00 432.00 467.00V510.00Q432.00 605.00 328.00 605.00H196.00ZM894.00 -12.00Q803.00 -12.00 741.00 20.00Q679.00 52.00 639.00 105.00L711.00 174.00Q751.00 126.00 796.00 103.50Q841.00 81.00 898.00 81.00Q964.00 81.00 999.50 111.00Q1035.00 141.00 1035.00 197.00Q1035.00 242.00 1009.00 266.50Q983.00 291.00 920.00 302.00L844.00 314.00Q794.00 322.00 760.00 340.50Q726.00 359.00 705.00 384.50Q684.00 410.00 674.50 441.50Q665.00 473.00 665.00 508.00Q665.00 607.00 729.00 658.50Q793.00 710.00 905.00 710.00Q988.00 710.00 1046.50 683.50Q1105.00 657.00 1141.00 609.00L1071.00 539.00Q1042.00 574.00 1002.50 595.50Q963.00 617.00 905.00 617.00Q843.00 617.00 810.50 590.50Q778.00 564.00 778.00 513.00Q778.00 470.00 803.50 445.50Q829.00 421.00 894.00 410.00L968.00 397.00Q1062.00 380.00 1105.00 328.50Q1148.00 277.00 1148.00 203.00Q1148.00 155.00 1131.50 115.00Q1115.00 75.00 1082.50 47.00Q1050.00 19.00 1002.50 3.50Q955.00 -12.00 894.00 -12.00Z"/>
     </g>
     <!-- The page's scanline texture at its 1-on-3 duty cycle. It only resolves
          above roughly 64px, so it is texture on a home screen and nothing at
@@ -32,6 +51,38 @@
   </defs>
 
   <rect width="32" height="32" rx="0" fill="#08070f"/>
-  <use href="#ps" fill="#e2ddf5"/>
+  <g id="mark">
+    <!-- Nothing is scaled: three cells of Plex Mono at this size already fill
+         the canvas the way the mark should, and the glyphs sit centred on the
+         baseline to within a thousandth of a unit. The only correction is
+         0.175 to the right, which is the half of the cyan fringe that hangs off
+         the P and would otherwise pull the mark visually left. -->
+    <g transform="translate(0.175 0)">
+      <use href="#ps" fill="#4fe8ff" opacity="0.55" transform="translate(-0.49 0)"/>
+      <use href="#ps" fill="#ff5cc8" opacity="0.55" transform="translate(0.49 0)"/>
+      <use href="#ps" fill="#e2ddf5"/>
+      <!-- The cursor: 0.5em wide, cap height tall, sitting in the third cell.
+           An em is 13.89 units here and a cell is 8.334, so the box is 6.945
+           wide, centred in the cell that runs 20.001 to 28.335 — exactly where
+           the underscore it replaced used to sit.
+
+           The height is read off the P rather than carried over from the page.
+           The P is flat-topped and spans 0 to 698 font units, so cap height is
+           9.6952 and the box runs from 11.1518 down to the baseline at 20.847:
+           its top edge is the same line as the top of the P and the S.
+
+           Copying the page's 0.76em here was the mistake, twice over. That
+           figure exists because the heading reads "Patrick Semler", whose k and
+           l reach 0.75em — it is the height that clears the tallest thing in
+           *that* line. This mark is two capitals and nothing else, so the same
+           number put a slab above the letters instead of a cursor beside them.
+           The S overshoots the cap line by 12 units, as round letters do; that
+           is optical compensation and not something a flat-topped rectangle
+           should follow.
+
+           No fringe on it: it is not text, and the page does not fringe it. -->
+      <rect x="20.6955" y="11.1518" width="6.9450" height="9.6952" fill="#ff5cc8"/>
+    </g>
+  </g>
   <rect width="32" height="32" fill="url(#scan)"/>
 </svg>
