@@ -32,16 +32,18 @@ export default function Home() {
 
         {/* The rule spans the column, so it promises two corners and the
             colophon has to hold the far one — left on its own, the copyright
-            reads as a row that failed to finish. The credit names the type and
-            the stylesheet rather than the framework: those are the two things
-            a reader can see, and neither is a claim the page has to keep
-            earning. */}
+            reads as a row that failed to finish.
+
+            Both names earn their place by not appearing anywhere else: the
+            tags cover React and TypeScript four times each, while this line is
+            the only mention of the framework or the stylesheet on the whole
+            page. Naming the second one costs a dozen characters. */}
         <footer className="relative z-10 mt-16 border-t border-line pt-6">
           <div className="flex flex-wrap items-center justify-between gap-x-8 gap-y-2 text-[0.75rem] text-faint">
             <p>
               © {new Date().getFullYear()} {profile.name}
             </p>
-            <p>Built with IBM Plex &amp; Tailwind</p>
+            <p>Built with Next.js &amp; Tailwind CSS</p>
           </div>
         </footer>
       </div>
