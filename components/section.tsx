@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { ScrambleText } from "./scramble";
 
 /* Split on numeric tokens, keeping them, so figures can be picked out of a
    sentence. Two expressions because a global regex is stateful and `.test`
@@ -49,8 +50,15 @@ export function Section({
         <span aria-hidden className="text-magenta">
           {"//"}
         </span>
-        <h2 id={`${id}-heading`} className="shrink-0 font-normal">
-          {label}
+        {/* Printed once as you arrive at it, not on every pass — see the note
+            on `view` in scramble.tsx. Labelled for assistive tech because the
+            run can be in flight at the moment a screen reader reaches it. */}
+        <h2
+          id={`${id}-heading`}
+          aria-label={label}
+          className="shrink-0 font-normal"
+        >
+          <ScrambleText text={label} trigger="view" />
         </h2>
       </div>
       {children}

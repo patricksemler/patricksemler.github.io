@@ -1,4 +1,5 @@
 import { projects } from "@/content/profile";
+import { ScrambleText } from "./scramble";
 import { Arrow, Metrics, Section, TagList } from "./section";
 
 export function Projects() {
@@ -10,19 +11,28 @@ export function Projects() {
           const href = project.repo ?? project.demo;
           return (
             <li key={project.name} className="entry">
-              <h3 className="text-[1rem] font-medium text-ink">
+              {/* The name is spelled out for assistive tech rather than read
+                  off the rendered text. Focus is one of the things that starts
+                  the flicker, so a keyboard user would otherwise be announced
+                  the substituted spelling at the exact moment they arrived.
+                  Both labels settle to the same string the eye sees. */}
+              <h3
+                className="aberrate text-[1rem] font-medium text-ink"
+                aria-label={project.name}
+              >
                 {href ? (
                   <a
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label={project.name}
                     className="group transition-colors hover:text-cyan"
                   >
-                    {project.name}
+                    <ScrambleText text={project.name} />
                     <Arrow />
                   </a>
                 ) : (
-                  project.name
+                  <ScrambleText text={project.name} />
                 )}
               </h3>
 
