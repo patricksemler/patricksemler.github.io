@@ -61,16 +61,53 @@
    slides beneath it.
 
    body must stay transparent — any opaque background there covers this. */
+/* The vignette is a horizontal falloff and nothing else, which looks like an
+   odd choice until you remember this background scrolls with the document.
+
+   A radial gradient here would be sized to the *document*, not the screen: on a
+   page four viewports tall you would get one enormous ellipse, darkening the
+   top and bottom of the document and leaving the middle — the part anyone is
+   actually looking at — perfectly flat. The two usual ways out are
+   `background-attachment: fixed` and a `position: fixed` overlay, and both are
+   the exact class of thing that broke here on iOS 26. So neither.
+
+   A gradient with no vertical component is uniform down the whole page, which
+   makes it scroll-invariant by construction. Nothing to pin, nothing to clip.
+   The cost is honest: no darkening in the corners, only at the left and right
+   edges. On a wide screen that is where a tube falls off most anyway.
+
+   It is layered *above* the scanlines so it attenuates them, and that is what
+   actually reads. The canvas is already near-black, so painting more black on
+   it is close to a no-op; what the eye picks up is the texture fading out
+   toward the edges, which is also what a real tube does. */
 html {
   -webkit-text-size-adjust: 100%;
+  --vignette: none;
   background-color: var(--color-bg);
-  background-image: repeating-linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0.03) 0px,
-    rgba(255, 255, 255, 0.03) 1px,
-    transparent 1px,
-    transparent 3px
-  );
+  background-image:
+    var(--vignette),
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.03) 0px,
+      rgba(255, 255, 255, 0.03) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+}
+
+/* Only where there is gutter to spend it on. The measure is 52rem plus padding,
+   so below about 80rem the falloff would be darkening text rather than margin —
+   and a phone has no bezel to imply in the first place. */
+@media (min-width: 80rem) {
+  html {
+    --vignette: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.4) 0%,
+      rgba(0, 0, 0, 0) 14%,
+      rgba(0, 0, 0, 0) 86%,
+      rgba(0, 0, 0, 0.4) 100%
+    );
+  }
 }
 
 body {
@@ -129,23 +166,129 @@ body {
    the root element rather than here — see the note on `html` above for why a
    fixed overlay could not survive iOS 26. */
 
-/* The name, printed rather than lit.
+/* Ink printed slightly out of register.
 
-   A chromatic split was tried three ways and a neon bloom after it; all four
-   were wrong, and for the same reason. A terminal has no light bleed and no
-   misregistration — it draws glyphs into a cell grid and stops. Anything
-   haloed or doubled reads as a sign above a shopfront, which is the one thing
-   this page is not.
+   History, because it matters for anyone tempted to widen this: a chromatic
+   split was tried three ways here and a neon bloom after it, and all four came
+   out for the same reason — they were *light*. A halo or a doubled glyph reads
+   as a sign above a shopfront, which is the one thing this page is not, and no
+   amount of tuning fixed that because the register was wrong to begin with.
 
-   So the name is drawn the way the rest of the page is drawn: one pass of the
-   mono face, no shadow, no offset. What separates it from the lines under it
-   is what separates bright-white from dim-white in a real terminal — weight
-   and value, nothing else. The terminal register is carried by the face, the
-   `//` markers and the scanlines; the heading does not need to carry it too.
+   What is here now is a different claim. A CRT genuinely does misregister: the
+   three guns land fractionally apart and every edge picks up a colour fringe,
+   which is a defect in the *printing* of the glyph, not light escaping from it.
+   So the offset is a hairline, the fringes sit behind the ink rather than
+   around it, and the middle of every stroke stays exactly the colour it was —
+   only the outermost edge shows cyan on one side and magenta on the other. If
+   you can see two copies, it is too big; the number to turn is --fringe.
 
-   There is no rule here any more. The heading is styled entirely by the
-   utilities on the element itself; this note stays only so the next person
-   does not reach for a glow a fifth time. */
+   Two zero-blur text shadows, not duplicate elements. Blur is what made the
+   rejected bloom read as a sign, and there is none here: a shadow at radius 0
+   is just an offset copy, which is what a misregistered gun lays down.
+
+   It began as three stacked spans, which held up on a fixed heading and broke
+   the moment the titles started to scramble — the ghosts were static copies, so
+   mid-flicker they showed the real word while the ink showed the substituted
+   one, and the pair read as a double exposure. A shadow is cast by whatever the
+   text node currently says, so it follows the scramble for free. It also wraps
+   correctly, needs no aria-hidden, and cannot be selected or copied: three
+   problems the duplicate spans each needed their own fix for. Anything
+   ink-coloured now takes a fringe with one class and no markup.
+
+   0.035em was chosen by rendering the name at 0.02 / 0.03 / 0.035 / 0.045 /
+   0.06 side by side at the real display size. By 0.06 the strokes read as
+   blurred rather than misregistered, which is the failure the four earlier
+   attempts kept landing in.
+
+   The 0.6px floor is what lets the same class work on 16px titles as well as on
+   the display heading. Pure em is proportionally correct but falls under a
+   device pixel on small text — 0.035em of 16px is 0.56px, which on a 1x screen
+   is nothing at all. The floor costs the heading nothing (0.035em wins at any
+   size above ~17px) and keeps the small text at a near-identical ratio. */
+.aberrate {
+  --fringe: max(0.6px, 0.035em);
+  --fringe-strength: 55%;
+  text-shadow:
+    calc(-1 * var(--fringe)) 0 0
+      color-mix(in oklab, var(--color-cyan) var(--fringe-strength), transparent),
+    var(--fringe) 0 0
+      color-mix(
+        in oklab,
+        var(--color-magenta) var(--fringe-strength),
+        transparent
+      );
+}
+
+/* A note on underlined links, because two obvious fixes here do not work.
+
+   A text shadow is cast by an element's decorations as well as by its glyphs,
+   so .aberrate on an underlined link fringes the rule too — and that rule is
+   --color-line-strong, far darker than the ink above it. The result was a dim
+   hairline wearing a bright cyan and magenta edge, in places brighter than the
+   rule itself, which reads as a mistake rather than as misregistration.
+
+   Turning the whole shadow down fixes the rule by dimming the letters with it,
+   which is the wrong trade: the letters are ink like any other ink on the page
+   and should be fringed like it.
+
+   Moving the shadow to a span *inside* the link does not work either, however
+   much it looks like it should. Decorations propagate from the link to its
+   in-flow descendants, and a browser paints the propagated rule together with
+   the descendant's shadow — so the fringe comes straight back. Rendered side
+   by side, shadow-on-anchor and shadow-on-inner-span are pixel-identical.
+
+   What works is not decorating the text at all. `border-bottom` is not text,
+   so no text-shadow can ever reach it: the rule stays flat while the glyphs
+   above it keep the full fringe. It needs box-decoration-clone so a link that
+   wraps is ruled on both lines. See the lead paragraph in intro.tsx. */
+
+/* The cursor the magenta token was always described as carrying.
+
+   Sized in em off the heading so it tracks the responsive display size.
+   `vertical-align: baseline` puts the bottom edge on the baseline, so it sits
+   in the line rather than floating in it.
+
+   Both numbers are measured from the face rather than guessed. Plex Mono at
+   600 weight reports a 0.6em advance, 0.698em cap height, and 0.75em to the top
+   of an ascender — and "Patrick Semler" contains ascenders, in the k and the l.
+   The first pass was a full 0.6em cell at 0.68em tall, which put it *below* the
+   caps beside it and made a wide, stunted thing that read as a dash.
+
+   So: 0.76em tall, a hair clear of the tallest glyph it stands next to, and
+   0.5em wide. A true terminal block fills the cell exactly — 0.6em here — and
+   that is the number to use if you want the literal thing; rendered beside
+   these letterforms it is correct but chunky, and 0.5em keeps the block reading
+   as a block while giving back the weight.
+
+   1.06s and `step-end`: a terminal cursor is a hard on/off at roughly one hertz,
+   never a fade. The odd figure is deliberate — a round 1s tends to lock visibly
+   in step with other periodic motion on screen.
+
+   The keyframes end lit, which is what makes this safe under the reduced-motion
+   block below: that rule cuts every animation to one 0.01ms pass, so whatever
+   the last keyframe says is where the cursor stops. Ending dark would leave a
+   reduced-motion visitor looking at a name with nothing after it. */
+.cursor {
+  display: inline-block;
+  width: 0.5em;
+  height: 0.76em;
+  margin-left: 0.22em;
+  vertical-align: baseline;
+  background-color: var(--color-magenta);
+  user-select: none;
+  animation: cursor-blink 1.06s step-end infinite;
+}
+
+@keyframes cursor-blink {
+  0%,
+  49.99% {
+    opacity: 0;
+  }
+  50%,
+  100% {
+    opacity: 1;
+  }
+}
 
 :focus-visible {
   outline: 2px solid var(--color-cyan);
@@ -183,6 +326,12 @@ body {
 @media (prefers-contrast: more) {
   html {
     background-image: none;
+  }
+
+  /* A fringe is deliberate colour noise on the edge of a glyph. Someone who has
+     asked the system for more contrast has asked for the opposite of that. */
+  .aberrate {
+    text-shadow: none;
   }
 }
 
