@@ -1,13 +1,15 @@
 import { bio, links, profile } from "@/content/profile";
+import { ScrambleText } from "./scramble";
 import { Arrow, Metrics } from "./section";
 
 export function Intro() {
   return (
     <header className="relative z-10">
-      {/* No shadow, no halo, no second copy — a terminal draws a glyph into
-          its cell and stops. See the note in globals.css. */}
-      <h1 className="text-display font-semibold tracking-tight text-ink">
+      {/* A hairline fringe either side of the ink, cyan left and magenta right —
+          the guns landing fractionally apart, not a glow. See globals.css. */}
+      <h1 className="aberrate text-display font-semibold tracking-tight text-ink">
         {profile.name}
+        <span aria-hidden className="cursor" />
       </h1>
 
       <p className="mt-2.5 text-[0.875rem] text-dim">
@@ -19,7 +21,13 @@ export function Intro() {
           reader looks for it, and it takes the signal colour because it is the
           one thing on this page anyone is meant to act on. Still a mailto —
           spelling it out costs nothing and works for the people who would
-          rather copy it than have a client opened for them. */}
+          rather copy it than have a client opened for them.
+
+          Deliberately the one piece of text on the page that does not flicker.
+          Selecting an address means pressing inside it, which follows the
+          hover that would have started a run, so a slow drag can lift a
+          substituted character into the clipboard. Everywhere else that is a
+          misspelled job title; here it is mail that bounces. */}
       <p className="mt-1.5">
         <a
           href={`mailto:${profile.email}`}
@@ -39,7 +47,19 @@ export function Intro() {
               href={part.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-ink underline decoration-line-strong decoration-1 underline-offset-[3px] transition-colors hover:decoration-cyan"
+              /* Ruled with a border rather than underlined. A text shadow is
+                 cast by an element's decorations too, so an underline here came
+                 out fringed in cyan and magenta — brighter, in places, than the
+                 dim rule it was fringing. A border is not text and no shadow
+                 can reach it. See the note in globals.css.
+
+                 A border sits at the bottom of the inline content box, which is
+                 one descender below the baseline — 4.5px at this size, where
+                 the old underline-offset put it at 3px. There is no padding
+                 that closes a 1.5px gap in the wrong direction, and it is not
+                 worth a background-gradient rule pinned to a hardcoded offset
+                 to recover, so the rule now sits a pixel and a half lower. */
+              className="aberrate box-decoration-clone border-b border-line-strong text-ink transition-colors hover:border-cyan"
             >
               {part.text}
             </a>
@@ -60,9 +80,10 @@ export function Intro() {
                   {...(external
                     ? { target: "_blank", rel: "noopener noreferrer" }
                     : {})}
+                  aria-label={link.label}
                   className="group inline-block py-1 text-[0.875rem] text-dim transition-colors hover:text-ink"
                 >
-                  {link.label}
+                  <ScrambleText text={link.label} />
                   <Arrow />
                 </a>
               </li>
