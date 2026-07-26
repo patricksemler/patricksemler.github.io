@@ -4,11 +4,14 @@ Live at **[patricksemler.dev](https://patricksemler.dev)**.
 
 My portfolio: one column, no section nav, no panels, nothing that slides in as
 you scroll. I wanted something that felt like a terminal without dressing up as
-one, so the whole effect comes from three small things — the mono face doing the
-structural work, the `//` before each section, and a scanline texture at 3% you
-only notice if you go looking. A shell path and a resting block cursor sat above
-my name for a while; both came out, because they were the two parts that read as
-costume rather than register. Everything else is content and whitespace.
+one, so the effect comes from a few small things — the mono face doing the
+structural work, the `//` before each section, a scanline texture at 3% you only
+notice if you go looking, and ink printed a hairline out of register the way a
+tube misregisters it. A shell path sat above my name for a while and came out,
+because it read as costume rather than register; the block cursor came back, but
+after the name, where a terminal would actually leave it. Entry titles and
+section markers flicker as you reach them, never far enough to stop being
+readable. Everything else is content and whitespace.
 
 Next.js 16 (App Router) · Tailwind CSS 4 · TypeScript · statically prerendered.
 
@@ -23,8 +26,8 @@ its terminal texture.
 
 | Token     | Role                                                                       |
 | --------- | -------------------------------------------------------------------------- |
-| `cyan`    | signal — my email, the figures inside the prose, link and tag hovers, focus |
-| `magenta` | identity — the `//` section markers, and nothing else                       |
+| `cyan`    | signal — my email, the figures inside the prose, link and tag hovers, focus, the left of the fringe |
+| `magenta` | identity — the `//` section markers, the cursor after my name, the right of the fringe              |
 
 Body copy sits in a calm lavender-grey. Between them the two accents land on a
 dozen elements in the whole page, which is the trick: a dense résumé stays
@@ -59,5 +62,6 @@ Built to WCAG 2.2 AA and checked against the rendered DOM rather than by eye:
 - Profile links are padded past the 24px target minimum (§2.5.8) — they're a
   standalone nav row, so the inline-text exception doesn't cover them.
 - No horizontal scroll at 320px.
-- `prefers-reduced-motion` turns off transitions; `prefers-contrast: more` drops
-  the scanline texture.
+- `prefers-reduced-motion` turns off transitions and the flicker, and leaves the
+  cursor lit rather than mid-blink; `prefers-contrast: more` drops the scanline
+  texture and the fringe.

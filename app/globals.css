@@ -10,8 +10,10 @@
    something.
 
      cyan     signal   — the email address, the figures pulled out of the
-                          prose, link and tag hovers, the focus ring
-     magenta  identity — the `//` section markers, and nothing else
+                          prose, link and tag hovers, the focus ring, and the
+                          left half of the fringe on ink
+     magenta  identity — the `//` section markers, the cursor after the name,
+                          and the right half of that fringe
 
    Contrast, worst case over every background a glyph can land on — the
    canvas, a scanline row, and the entry hover fill over either — all clear
