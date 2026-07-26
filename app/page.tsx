@@ -30,10 +30,19 @@ export default function Home() {
           <Experience />
         </main>
 
+        {/* The rule spans the column, so it promises two corners and the
+            colophon has to hold the far one — left on its own, the copyright
+            reads as a row that failed to finish. The credit names the type and
+            the stylesheet rather than the framework: those are the two things
+            a reader can see, and neither is a claim the page has to keep
+            earning. */}
         <footer className="relative z-10 mt-16 border-t border-line pt-6">
-          <p className="text-[0.75rem] text-faint">
-            © {new Date().getFullYear()} {profile.name}
-          </p>
+          <div className="flex flex-wrap items-center justify-between gap-x-8 gap-y-2 text-[0.75rem] text-faint">
+            <p>
+              © {new Date().getFullYear()} {profile.name}
+            </p>
+            <p>Built with IBM Plex &amp; Tailwind</p>
+          </div>
         </footer>
       </div>
     </>
