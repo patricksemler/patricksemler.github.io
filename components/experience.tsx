@@ -1,4 +1,5 @@
 import { experience } from "@/content/profile";
+import { ScrambleText } from "./scramble";
 import { Metrics, Section, TagList } from "./section";
 
 export function Experience() {
@@ -13,7 +14,16 @@ export function Experience() {
                 from entry to entry; it only shares the line once there is
                 reliably room for every title. */}
             <div className="flex flex-col gap-1 sm:flex-row sm:flex-wrap sm:items-baseline sm:justify-between sm:gap-x-8">
-              <h3 className="text-[1rem] font-medium text-ink">{role.title}</h3>
+              {/* Spelled out for assistive tech for the same reason the
+                  project names are — see the note in projects.tsx. The company
+                  line below is deliberately left alone: two runs of text
+                  flickering under one pointer is an effect, not a detail. */}
+              <h3
+                className="aberrate text-[1rem] font-medium text-ink"
+                aria-label={role.title}
+              >
+                <ScrambleText text={role.title} />
+              </h3>
               <p className="text-[0.75rem] text-faint tabular-nums">
                 {role.start}
                 <span aria-hidden className="mx-1.5">
