@@ -62,15 +62,15 @@ export const links = [
 /* --------------------------------------------------------------------------
  * Projects. Not a sequence — order is editorial, so put your best first.
  *
- * The title links to `repo`, falling back to `demo`; leave both null and it
- * renders as plain text with no arrow.
+ * `link` is where the title points — the live site, or the repo if there is no
+ * site. One destination, because a title can only carry one: leave it null and
+ * the name renders as plain text with no arrow.
  * ----------------------------------------------------------------------- */
 type Project = {
   name: string;
   blurb: string;
   stack: readonly string[];
-  repo: string | null;
-  demo: string | null;
+  link: string | null;
 };
 
 export const projects: readonly Project[] = [
@@ -79,16 +79,14 @@ export const projects: readonly Project[] = [
     blurb:
       "An adaptive coding-practice platform that generates original problems tailored to each user's per-concept mastery, so every session lands at the edge of their ability. Each generated problem clears a six-stage gate — schema, compile, differential, boundary, example, and mutation checks — before it is ever shown, and the judge holds roughly 75 submissions per minute with zero incomplete jobs.",
     stack: ["TypeScript", "Python", "React", "Fastify", "PostgreSQL", "Docker"],
-    repo: null,
-    demo: null,
+    link: "https://leetmind.patricksemler.dev",
   },
   {
     name: "Phobos",
     blurb:
       "A self-hosted AI chief of staff for one person — 63 natural-language tools across 13 capability modules, reachable from a Telegram bot and a Realtime-synced React dashboard, that tracks habits, watches an inbox and calendar, and messages first. A self-extending forge plans and generates new TypeScript modules in isolated Git worktrees, then gates them behind typecheck, tests, and an independent cross-vendor review; nothing reaches production without human approval, and anything the system writes to itself is one command from a revert.",
     stack: ["TypeScript", "Node.js", "React", "Supabase", "MCP"],
-    repo: null,
-    demo: null,
+    link: null,
   },
 ];
 
@@ -100,6 +98,9 @@ export const projects: readonly Project[] = [
  * reprinting them here is what made this page a duplicate of the PDF. Give
  * each role the single sentence you would say out loud, with the number that
  * makes it real, and let the résumé carry the rest.
+ *
+ * `link` points the company name outward — the employer's site, or the lab's.
+ * Null renders it as plain text.
  * ----------------------------------------------------------------------- */
 type Role = {
   company: string;
@@ -108,6 +109,7 @@ type Role = {
   end: string;
   summary: string;
   stack: readonly string[];
+  link: string | null;
 };
 
 export const experience: readonly Role[] = [
@@ -119,6 +121,7 @@ export const experience: readonly Role[] = [
     summary:
       "Diagnostic classification across 144 veterinary conditions — cut the production classifier's peak memory by 83% while holding 91% accuracy, and grounded the Gemini RAG pipeline in full case context so it stopped inventing care plans.",
     stack: ["Python", "scikit-learn", "Gemini", "RAG"],
+    link: null,
   },
   {
     company: "Apply Finch",
@@ -128,6 +131,7 @@ export const experience: readonly Role[] = [
     summary:
       "An AI job-application platform built with a 5-developer team — routed pipeline stages across cost-optimized LLMs to get generation under $0.01 per application, and hardened the async pipeline against 4 failure modes it used to lose work to.",
     stack: ["React", "TypeScript", "Flask", "PostgreSQL", "AWS"],
+    link: null,
   },
   {
     company: "Maroon Fund",
@@ -137,5 +141,6 @@ export const experience: readonly Role[] = [
     summary:
       "Backtesting and risk infrastructure — added Jensen's alpha, OLS beta, and tracking error against a 3-source SPY fallback, and raised backtest fidelity by modeling slippage, commissions, and forced exits.",
     stack: ["Python", "Pandas", "Plotly", "pytest"],
+    link: null,
   },
 ];

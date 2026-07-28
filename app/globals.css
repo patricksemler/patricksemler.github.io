@@ -134,6 +134,7 @@ body {
    left and right to give the fill room, and its vertical padding is what
    separates one entry from the next — the list gap was cut to match. */
 .entry {
+  position: relative;
   margin-inline: -1rem;
   padding: calc(0.75rem - 1px) calc(1rem - 1px);
   border: 1px solid transparent;
@@ -141,6 +142,23 @@ body {
   transition:
     background-color 180ms ease,
     border-color 180ms ease;
+}
+
+/* The entry is lit as one thing on hover, so it should be clickable as one
+   thing too — an empty rectangle over the whole block, belonging to the title's
+   anchor. The link stays exactly one link: one tab stop, one accessible name,
+   one right-click menu with a real URL in it. Nesting the block inside the
+   anchor instead would work as well and read the entire blurb out as the
+   link's name.
+
+   It is stacked under nothing, so it does take the pointer off the text
+   beneath it: selecting a blurb by dragging across it is no longer possible
+   inside a linked entry. That is the price of the whole box being the target,
+   and it is only paid by entries that have somewhere to go. */
+.entry-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
 }
 
 /* focus-within, not just hover — a project title reached by keyboard should

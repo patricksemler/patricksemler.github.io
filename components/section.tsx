@@ -59,7 +59,12 @@ export function Section({
 }
 
 /** Technology tags. Bordered rather than bracketed — quieter at this density,
- *  and the mono face already carries the terminal register. */
+ *  and the mono face already carries the terminal register.
+ *
+ *  Inert: no hover state, because a tag is not a control and lighting one up
+ *  under the pointer promised a click that was never there. Inside a linked
+ *  entry the whole block is the target now, and a tag that reacts on its own
+ *  reads as a second, smaller target competing with it. */
 export function TagList({
   items,
   label,
@@ -72,7 +77,7 @@ export function TagList({
       {items.map((item) => (
         <li
           key={item}
-          className="border border-line px-2.5 py-1 text-[0.6875rem] text-dim transition-colors hover:border-cyan/40 hover:text-ink"
+          className="border border-line px-2.5 py-1 text-[0.6875rem] text-dim"
         >
           {item}
         </li>
