@@ -1,5 +1,4 @@
 import { bio, links, profile } from "@/content/profile";
-import { ScrambleText } from "./scramble";
 import { Arrow, Metrics } from "./section";
 
 export function Intro() {
@@ -21,13 +20,7 @@ export function Intro() {
           reader looks for it, and it takes the signal colour because it is the
           one thing on this page anyone is meant to act on. Still a mailto —
           spelling it out costs nothing and works for the people who would
-          rather copy it than have a client opened for them.
-
-          Deliberately the one piece of text on the page that does not flicker.
-          Selecting an address means pressing inside it, which follows the
-          hover that would have started a run, so a slow drag can lift a
-          substituted character into the clipboard. Everywhere else that is a
-          misspelled job title; here it is mail that bounces. */}
+          rather copy it than have a client opened for them. */}
       <p className="mt-1.5">
         <a
           href={`mailto:${profile.email}`}
@@ -47,19 +40,7 @@ export function Intro() {
               href={part.href}
               target="_blank"
               rel="noopener noreferrer"
-              /* Ruled with a border rather than underlined. A text shadow is
-                 cast by an element's decorations too, so an underline here came
-                 out fringed in cyan and magenta — brighter, in places, than the
-                 dim rule it was fringing. A border is not text and no shadow
-                 can reach it. See the note in globals.css.
-
-                 A border sits at the bottom of the inline content box, which is
-                 one descender below the baseline — 4.5px at this size, where
-                 the old underline-offset put it at 3px. There is no padding
-                 that closes a 1.5px gap in the wrong direction, and it is not
-                 worth a background-gradient rule pinned to a hardcoded offset
-                 to recover, so the rule now sits a pixel and a half lower. */
-              className="aberrate box-decoration-clone border-b border-line-strong text-ink transition-colors hover:border-cyan"
+              className="text-cyan underline decoration-transparent decoration-1 underline-offset-[3px] transition-colors hover:decoration-cyan"
             >
               {part.text}
             </a>
@@ -83,7 +64,7 @@ export function Intro() {
                   aria-label={link.label}
                   className="group inline-block py-1 text-[0.875rem] text-dim transition-colors hover:text-ink"
                 >
-                  <ScrambleText text={link.label} />
+                  {link.label}
                   <Arrow />
                 </a>
               </li>

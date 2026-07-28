@@ -14,6 +14,8 @@
                           left half of the fringe on ink
      magenta  identity — the `//` section markers, the cursor after the name,
                           and the right half of that fringe
+     ink      highlight — selected text, inverted against the canvas; neither
+                          accent, for the reason given at ::selection
 
    Contrast, worst case over every background a glyph can land on — the
    canvas, a scanline row, and the entry hover fill over either — all clear
@@ -31,6 +33,7 @@
 
   --color-cyan: #4fe8ff;
   --color-magenta: #ff5cc8;
+  --color-highlight: var(--color-ink);
 
   --font-mono:
     var(--font-plex-mono), ui-monospace, SFMono-Regular, Menlo, Consolas,
@@ -188,14 +191,10 @@ body {
    rejected bloom read as a sign, and there is none here: a shadow at radius 0
    is just an offset copy, which is what a misregistered gun lays down.
 
-   It began as three stacked spans, which held up on a fixed heading and broke
-   the moment the titles started to scramble — the ghosts were static copies, so
-   mid-flicker they showed the real word while the ink showed the substituted
-   one, and the pair read as a double exposure. A shadow is cast by whatever the
-   text node currently says, so it follows the scramble for free. It also wraps
-   correctly, needs no aria-hidden, and cannot be selected or copied: three
-   problems the duplicate spans each needed their own fix for. Anything
-   ink-coloured now takes a fringe with one class and no markup.
+   It began as three stacked spans, which complicated wrapping, selection, and
+   accessible text. A shadow follows the real text node automatically, needs no
+   aria-hidden duplicate, and cannot be selected or copied independently.
+   Anything ink-coloured now takes a fringe with one class and no extra markup.
 
    0.035em was chosen by rendering the name at 0.02 / 0.03 / 0.035 / 0.045 /
    0.06 side by side at the real display size. By 0.06 the strokes read as
@@ -220,29 +219,6 @@ body {
         transparent
       );
 }
-
-/* A note on underlined links, because two obvious fixes here do not work.
-
-   A text shadow is cast by an element's decorations as well as by its glyphs,
-   so .aberrate on an underlined link fringes the rule too — and that rule is
-   --color-line-strong, far darker than the ink above it. The result was a dim
-   hairline wearing a bright cyan and magenta edge, in places brighter than the
-   rule itself, which reads as a mistake rather than as misregistration.
-
-   Turning the whole shadow down fixes the rule by dimming the letters with it,
-   which is the wrong trade: the letters are ink like any other ink on the page
-   and should be fringed like it.
-
-   Moving the shadow to a span *inside* the link does not work either, however
-   much it looks like it should. Decorations propagate from the link to its
-   in-flow descendants, and a browser paints the propagated rule together with
-   the descendant's shadow — so the fringe comes straight back. Rendered side
-   by side, shadow-on-anchor and shadow-on-inner-span are pixel-identical.
-
-   What works is not decorating the text at all. `border-bottom` is not text,
-   so no text-shadow can ever reach it: the rule stays flat while the glyphs
-   above it keep the full fringe. It needs box-decoration-clone so a link that
-   wraps is ruled on both lines. See the lead paragraph in intro.tsx. */
 
 /* The cursor the magenta token was always described as carrying.
 
@@ -337,7 +313,13 @@ body {
   }
 }
 
+/* Inverse video: ink becomes the ground and the ground becomes the ink.
+   Decorations use the same dark ink so a hovered link does not retain a cyan
+   underline through an otherwise inverted selection. */
 ::selection {
-  background-color: var(--color-cyan);
+  background-color: var(--color-highlight);
   color: var(--color-bg);
+  /* The hover utility carries both a class and a pseudo-class, so it otherwise
+     outranks this pseudo-element while the pointer is still over the link. */
+  text-decoration-color: var(--color-bg) !important;
 }
