@@ -1,40 +1,22 @@
 import { projects } from "@/content/profile";
-import { Arrow, Metrics, Section, TagList } from "./section";
+import { Entry } from "./entry";
+import { Section } from "./section";
 
 export function Projects() {
   return (
     <Section id="projects" label="Projects">
       {/* Unordered — the arrangement is editorial, not a ranking. */}
       <ul className="-my-3 flex flex-col gap-4">
-        {projects.map((project) => {
-          const href = project.repo ?? project.demo;
-          return (
-            <li key={project.name} className="entry">
-              <h3 className="aberrate text-[1rem] font-medium text-ink">
-                {href ? (
-                  <a
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group transition-colors hover:text-cyan"
-                  >
-                    {project.name}
-                    <Arrow />
-                  </a>
-                ) : project.name}
-              </h3>
-
-              <p className="mt-2.5 font-sans text-[1rem] leading-[1.7] text-dim">
-                <Metrics text={project.blurb} />
-              </p>
-
-              <TagList
-                items={project.stack}
-                label={`${project.name} technologies`}
-              />
-            </li>
-          );
-        })}
+        {projects.map((project) => (
+          <Entry
+            key={project.name}
+            title={project.name}
+            href={project.link}
+            body={project.blurb}
+            stack={project.stack}
+            stackLabel={`${project.name} technologies`}
+          />
+        ))}
       </ul>
     </Section>
   );
