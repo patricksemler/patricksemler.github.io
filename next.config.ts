@@ -5,7 +5,6 @@ const nextConfig: NextConfig = {
   output: "export",
   // Pages serves directories, so emit `/me/index.html` rather than `/me.html`.
   trailingSlash: true,
-  images: { unoptimized: true },
 };
 
 export default nextConfig;
