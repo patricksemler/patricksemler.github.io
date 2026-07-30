@@ -10,9 +10,9 @@
 export const profile = {
   name: "Patrick Semler",
   role: "Software Engineer",
-  /** One line. What you build and for whom — not adjectives about yourself. */
+  /** One line. What you build and for whom, or where your interests lie. */
   tagline:
-    "I build AI systems that hold up under load — retrieval pipelines, job queues, and the failure handling that keeps them from quietly lying to you.",
+    "Computer Science student interested in AI and full-stack development.",
   location: "College Station, TX",
   email: "patricksemler@tamu.edu",
 } as const;
