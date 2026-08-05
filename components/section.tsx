@@ -8,8 +8,8 @@ const IS_NUMBER = /^\$?\d/;
 
 /**
  * Prose with its figures pulled forward. Everything measurable in this
- * résumé — 144 conditions, 83%, $0.01 — is the part worth reading first, so it
- * gets the signal colour and the surrounding sentence stays quiet.
+ * résumé — 143 conditions, 74%, 4 failure modes — is the part worth reading
+ * first, so it gets the signal colour and the surrounding sentence stays quiet.
  */
 export function Metrics({ text }: { text: string }) {
   return (

@@ -30,8 +30,10 @@ export const bio: readonly BioPart[] = [
   {
     text: ", currently doing machine learning research on veterinary diagnostics. I build full-stack AI systems at ",
   },
-  { text: "Apply Finch" },
-  { text: ", and before that wrote backtesting and risk infrastructure at " },
+  { text: "ApplyFinch" },
+  {
+    text: ", and before that extended backtesting and risk infrastructure at ",
+  },
   { text: "Maroon Fund" },
   /* The paragraph hands off to the section below it rather than summing up:
      both projects are named with just enough of a hook to make scrolling the
@@ -77,15 +79,30 @@ export const projects: readonly Project[] = [
   {
     name: "LeetMind",
     blurb:
-      "An adaptive coding-practice platform that generates original problems tailored to each user's per-concept mastery, so every session lands at the edge of their ability. Each generated problem clears a six-stage gate — schema, compile, differential, boundary, example, and mutation checks — before it is ever shown, and the judge holds roughly 75 submissions per minute with zero incomplete jobs.",
-    stack: ["TypeScript", "Python", "React", "Fastify", "PostgreSQL", "Docker"],
+      "An adaptive coding-practice platform that generates original problems tailored to each user's per-concept mastery across 20 data-structure and algorithm categories, so every session lands at the edge of their ability. Nothing is published until it survives differential testing between the reference solution and an independent oracle across authored cases and 50 seeded randomized inputs, and submitted code runs in throwaway, network-disabled Docker containers that cannot see the hidden answers.",
+    stack: [
+      "TypeScript",
+      "Python",
+      "C++",
+      "React",
+      "FastAPI",
+      "PostgreSQL",
+      "Docker",
+    ],
     link: "https://leetmind.patricksemler.dev",
   },
   {
     name: "Phobos",
     blurb:
-      "A self-hosted AI chief of staff for one person — 63 natural-language tools across 13 capability modules, reachable from a Telegram bot and a Realtime-synced React dashboard, that tracks habits, watches an inbox and calendar, and messages first. A self-extending forge plans and generates new TypeScript modules in isolated Git worktrees, then gates them behind typecheck, tests, and an independent cross-vendor review; nothing reaches production without human approval, and anything the system writes to itself is one command from a revert.",
-    stack: ["TypeScript", "Node.js", "React", "Supabase", "MCP"],
+      "A self-hosted AI chief of staff for one person — natural-language requests from a Telegram bot and a React dashboard become approved, durable task graphs, worked by 8 specialized agent roles spanning research, planning, execution, verification, repair, and independent review. When a task needs a capability it lacks, a self-extending forge generates, reviews, builds, tests, and installs a new TypeScript module, then runs it inside a networkless, read-only container that can reach host services only through a grant-checked broker — and nothing executes until the plan and its permissions are approved.",
+    stack: [
+      "TypeScript",
+      "Node.js",
+      "Fastify",
+      "React",
+      "PostgreSQL",
+      "Docker",
+    ],
     link: null,
   },
 ];
@@ -119,18 +136,24 @@ export const experience: readonly Role[] = [
     start: "2026-06",
     end: "now",
     summary:
-      "Diagnostic classification across 144 veterinary conditions — cut the production classifier's peak memory by 83% while holding 91% accuracy, and grounded the Gemini RAG pipeline in full case context so it stopped inventing care plans.",
+      "Diagnostic classification across 143 veterinary conditions — cut the classifier's peak memory by 74% while holding accuracy at 90.83%, and grounded Gemini care plans in each patient's own context instead of the disease name alone.",
     stack: ["Python", "scikit-learn", "Gemini", "RAG"],
     link: null,
   },
   {
-    company: "Apply Finch",
+    company: "ApplyFinch",
     title: "Full-Stack Developer",
     start: "2026-01",
     end: "now",
     summary:
-      "An AI job-application platform built with a 5-developer team — routed pipeline stages across cost-optimized LLMs to get generation under $0.01 per application, and hardened the async pipeline against 4 failure modes it used to lose work to.",
-    stack: ["React", "TypeScript", "Flask", "PostgreSQL", "AWS"],
+      "An AI job-application platform built by a multi-developer team — shipped full-stack workflows for scraping, ranking, and document generation, and hardened the async pipeline against 4 failure modes it used to lose work to.",
+    stack: [
+      "React",
+      "TypeScript",
+      "Flask",
+      "PostgreSQL",
+      "Cloudflare Workers",
+    ],
     link: null,
   },
   {
@@ -140,7 +163,7 @@ export const experience: readonly Role[] = [
     end: "2026-05",
     summary:
       "Backtesting and risk infrastructure — added Jensen's alpha, OLS beta, and tracking error against a 3-source SPY fallback, and raised backtest fidelity by modeling slippage, commissions, and forced exits.",
-    stack: ["Python", "Pandas", "Plotly", "pytest"],
+    stack: ["Python", "pandas", "Plotly", "pytest"],
     link: null,
   },
 ];
