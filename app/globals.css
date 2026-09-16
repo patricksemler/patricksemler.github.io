@@ -353,6 +353,8 @@ h1 {
 }
 
 .article-body {
+  --article-block-space: 1.5rem;
+  --article-section-space: clamp(2.75rem, 6vw, 3.5rem);
   padding-top: clamp(2.75rem, 6vw, 4.5rem);
   color: var(--color-muted);
   font-size: clamp(1rem, 0.96rem + 0.2vw, 1.0625rem);
@@ -360,12 +362,12 @@ h1 {
   letter-spacing: -0.008em;
 }
 
-.article-body p + p {
-  margin-top: 1.5rem;
+.article-body > * + * {
+  margin-top: var(--article-block-space);
 }
 
 .article-body h2 {
-  margin-top: 3.5rem;
+  margin-top: var(--article-section-space);
   color: var(--color-ink);
   font-size: 1.125rem;
   font-weight: 500;
@@ -373,32 +375,41 @@ h1 {
   line-height: 1.5;
 }
 
-.article-body h2 + p,
-.article-body h2 + ul,
-.article-body h2 + ol {
-  margin-top: 1.25rem;
+.article-body h2 + * {
+  margin-top: 1rem;
 }
 
 .article-body ul,
 .article-body ol {
-  padding-left: 1.15rem;
+  list-style-position: outside;
+}
+
+.article-body ul {
+  padding-left: 1.5rem;
+  list-style-type: disc;
+}
+
+.article-body ol {
+  padding-left: 1.75rem;
+  list-style-type: decimal;
 }
 
 .article-body li {
-  padding-left: 0.45rem;
+  padding-left: 0.35rem;
 }
 
 .article-body li + li {
-  margin-top: 0.75rem;
+  margin-top: 1rem;
 }
 
 .article-body li::marker {
-  color: var(--color-faint);
+  color: var(--color-ink);
+  font-variant-numeric: tabular-nums;
 }
 
 .article-body figure {
   max-width: none;
-  margin-block: clamp(3rem, 7vw, 4.75rem);
+  margin-block: var(--article-section-space);
 }
 
 .article-image {
