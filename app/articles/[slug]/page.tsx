@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { SiteFooter, SiteNav } from "@/components/chrome";
 import {
   articles,
   formatArticleDate,
@@ -54,27 +55,22 @@ export default async function ArticlePage({
         Skip to article
       </a>
 
-      <div className="page-shell article-page-shell">
-        <nav className="article-nav" aria-label="Article navigation">
-          <Link href="/" className="quiet-link">
-            {profile.name}
+      <div className="page-shell">
+        <SiteNav>
+          <Link href="/articles" className="text-link">
+            Articles
           </Link>
-          <Link href="/articles" className="quiet-link">
-            All articles
-          </Link>
-        </nav>
+        </SiteNav>
 
         <main id="article">
           <article>
-            <header className="article-header">
-              <p className="eyebrow">Article</p>
+            <header>
               <h1 className="article-title">{article.title}</h1>
-              <time
-                className="article-published"
-                dateTime={article.publishedAt}
-              >
-                {formatArticleDate(article.publishedAt)}
-              </time>
+              <p className="identity-line">
+                <time dateTime={article.publishedAt}>
+                  {formatArticleDate(article.publishedAt)}
+                </time>
+              </p>
             </header>
 
             <div className="article-body">
@@ -82,14 +78,16 @@ export default async function ArticlePage({
                 <ArticleBlockView key={`${block.type}-${index}`} block={block} />
               ))}
             </div>
+
+            <footer className="article-footer">
+              <Link href="/articles" className="text-link">
+                ← All articles
+              </Link>
+            </footer>
           </article>
         </main>
 
-        <footer className="article-footer">
-          <Link href="/articles" className="quiet-link">
-            ← All articles
-          </Link>
-        </footer>
+        <SiteFooter />
       </div>
     </>
   );

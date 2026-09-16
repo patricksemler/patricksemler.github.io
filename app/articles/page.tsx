@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { SiteFooter, SiteNav } from "@/components/chrome";
 import { articles, formatArticleDate } from "@/content/articles";
 import { profile } from "@/content/profile";
 
@@ -15,37 +16,39 @@ export default function ArticlesPage() {
         Skip to articles
       </a>
 
-      <div className="page-shell article-page-shell">
-        <header className="collection-header">
-          <Link href="/" className="quiet-link">
-            ← Back home
-          </Link>
-          <h1 className="collection-title">Articles</h1>
+      <div className="page-shell">
+        <SiteNav />
+
+        <header>
+          <h1>Articles</h1>
         </header>
 
         <main id="articles" className="article-index">
-          <ol className="article-list">
+          {/* Each row is an entry like the ones on the front page — title on
+              the left, date on the right — so the list reads as the same
+              kind of thing. */}
+          <ol className="entry-list">
             {articles.map((article) => (
-              <li key={article.slug} className="article-list-item">
-                <h2>
-                  <Link
-                    href={`/articles/${article.slug}`}
-                    className="article-list-link"
-                  >
-                    {article.title}
-                  </Link>
-                </h2>
-                <time dateTime={article.publishedAt}>
-                  {formatArticleDate(article.publishedAt)}
-                </time>
+              <li key={article.slug} className="entry">
+                <div className="entry-heading">
+                  <h2>
+                    <Link
+                      href={`/articles/${article.slug}`}
+                      className="entry-link"
+                    >
+                      {article.title}
+                    </Link>
+                  </h2>
+                  <time className="entry-date" dateTime={article.publishedAt}>
+                    {formatArticleDate(article.publishedAt)}
+                  </time>
+                </div>
               </li>
             ))}
           </ol>
         </main>
 
-        <footer className="site-footer">
-          <p>© {new Date().getFullYear()} {profile.name}</p>
-        </footer>
+        <SiteFooter />
       </div>
     </>
   );

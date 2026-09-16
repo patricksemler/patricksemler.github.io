@@ -1,7 +1,7 @@
+import { SiteFooter } from "@/components/chrome";
 import { Experience } from "@/components/experience";
 import { Intro } from "@/components/intro";
 import { Projects } from "@/components/projects";
-import { profile } from "@/content/profile";
 
 export default function Home() {
   return (
@@ -13,15 +13,12 @@ export default function Home() {
       <div className="page-shell">
         <Intro />
 
-        <main id="main" className="section-stack">
+        <main id="main">
           <Projects />
           <Experience />
         </main>
 
-        <footer className="site-footer">
-          <p>© {new Date().getFullYear()} {profile.name}</p>
-          <p>Built with Next.js &amp; Tailwind CSS</p>
-        </footer>
+        <SiteFooter />
       </div>
     </>
   );
