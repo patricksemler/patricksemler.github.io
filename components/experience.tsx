@@ -15,7 +15,7 @@ export function Experience() {
             meta={
               <p className="entry-date">
                 {role.start}
-                <span aria-hidden>—</span>
+                <span aria-hidden>–</span>
                 {role.end === "now" ? "present" : role.end}
               </p>
             }
