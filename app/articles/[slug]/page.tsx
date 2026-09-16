@@ -102,12 +102,14 @@ function ArticleBlockView({ block }: { block: ArticleBlock }) {
     case "heading":
       return <h2>{block.text}</h2>;
     case "list":
+      const List = block.ordered ? "ol" : "ul";
+
       return (
-        <ul>
+        <List>
           {block.items.map((item) => (
             <li key={item}>{item}</li>
           ))}
-        </ul>
+        </List>
       );
     case "image":
       return (
