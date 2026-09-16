@@ -6,23 +6,21 @@ export function Experience() {
   return (
     <Section id="experience" label="Experience">
       {/* Ordered because it is a timeline — the sequence is the point. */}
-      <ol className="-my-3 flex flex-col gap-4">
+      <ol className="entry-list">
         {experience.map((role) => (
           <Entry
             key={`${role.company}-${role.start}`}
             title={role.title}
             href={role.link}
             meta={
-              <p className="text-[0.75rem] text-faint tabular-nums">
+              <p className="entry-date">
                 {role.start}
-                <span aria-hidden className="mx-1.5">
-                  →
-                </span>
+                <span aria-hidden>—</span>
                 {role.end === "now" ? "present" : role.end}
               </p>
             }
             subtitle={
-              <p className="mt-1 text-[0.8125rem] text-dim">{role.company}</p>
+              <p className="entry-subtitle">{role.company}</p>
             }
             /* One line, not three bullets. The bulleted version is the
                résumé's job, and printing it twice is what made this page a

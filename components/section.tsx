@@ -16,7 +16,7 @@ export function Metrics({ text }: { text: string }) {
     <>
       {text.split(SPLIT_ON_NUMBER).map((part, i) =>
         IS_NUMBER.test(part) ? (
-          <span key={i} className="text-cyan">
+          <span key={i} className="metric">
             {part}
           </span>
         ) : (
@@ -38,22 +38,11 @@ export function Section({
   children: ReactNode;
 }) {
   return (
-    <section aria-labelledby={`${id}-heading`} className="relative z-10">
-      {/* Only the label lives inside the heading. The marker is decoration,
-          and decoration nested in a heading ends up in its accessible name no
-          matter how it is hidden. */}
-      {/* Set on the character cell, the way a terminal would print it: no
-          letterspacing, and exactly one mono advance (0.6em) between the
-          marker and the label rather than an arbitrary gap. */}
-      <div className="mb-6 flex items-center gap-[0.6em] text-[0.75rem] tracking-normal text-faint uppercase">
-        <span aria-hidden className="text-magenta">
-          {"//"}
-        </span>
-        <h2 id={`${id}-heading`} className="shrink-0 font-normal">
-          {label}
-        </h2>
-      </div>
-      {children}
+    <section aria-labelledby={`${id}-heading`} className="content-section">
+      <h2 id={`${id}-heading`} className="section-label">
+        {label}
+      </h2>
+      <div>{children}</div>
     </section>
   );
 }
@@ -73,13 +62,11 @@ export function TagList({
   label: string;
 }) {
   return (
-    <ul aria-label={label} className="mt-5 flex flex-wrap gap-2">
-      {items.map((item) => (
-        <li
-          key={item}
-          className="border border-line px-2.5 py-1 text-[0.6875rem] text-dim"
-        >
+    <ul aria-label={label} className="tag-list">
+      {items.map((item, index) => (
+        <li key={item}>
           {item}
+          {index < items.length - 1 && <span aria-hidden>·</span>}
         </li>
       ))}
     </ul>
@@ -89,10 +76,7 @@ export function TagList({
 /** The outbound arrow used on every external link. */
 export function Arrow() {
   return (
-    <span
-      aria-hidden
-      className="ml-1.5 inline-block -translate-y-[0.12em] align-middle text-[1.15em] leading-none text-faint transition-colors group-hover:text-cyan"
-    >
+    <span aria-hidden className="arrow">
       ↗
     </span>
   );
