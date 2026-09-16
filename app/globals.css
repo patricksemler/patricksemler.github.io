@@ -10,6 +10,13 @@
 }
 
 :root {
+  /* Breathing room on either side of a rule. Major rules sit between the
+     page's big blocks — header, sections, footer — and minor rules between
+     the entries inside one. Nothing else spaces a rule, so these two numbers
+     move every divider on the site together. */
+  --rule-space: 2.5rem;
+  --entry-space: 1.75rem;
+
   color-scheme: dark;
   background: var(--color-canvas);
   -webkit-text-size-adjust: 100%;
@@ -42,11 +49,24 @@ a {
 .page-shell {
   width: min(100% - 3rem, 46rem);
   margin-inline: auto;
-  padding-block: clamp(3rem, 7vw, 6.5rem) 2.5rem;
+  padding-block: clamp(3rem, 7vw, 6.5rem) var(--rule-space);
 }
 
-.site-header {
-  padding-bottom: clamp(2.25rem, 3.5vw, 2.75rem);
+/* Every rule is the top edge of the block beneath it, with the same space
+   above and below. Blocks never carry bottom spacing of their own. */
+.content-section,
+.site-footer,
+.article-index,
+.article-body {
+  margin-top: var(--rule-space);
+  padding-top: var(--rule-space);
+  border-top: 1px solid var(--color-line);
+}
+
+.entry + .entry {
+  margin-top: var(--entry-space);
+  padding-top: var(--entry-space);
+  border-top: 1px solid var(--color-line);
 }
 
 h1 {
@@ -67,6 +87,18 @@ h1 {
   flex-wrap: wrap;
   gap: 0.35rem 1.5rem;
   margin-top: 1.75rem;
+  color: var(--color-muted);
+  font-size: 0.8125rem;
+}
+
+/* The masthead on every page but the front one: the name, pointing home,
+   and whatever the page sits beneath. Same size and colour as the profile
+   links so it reads as the same row of chrome. */
+.site-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding-bottom: var(--rule-space);
   color: var(--color-muted);
   font-size: 0.8125rem;
 }
@@ -124,15 +156,6 @@ h1 {
   color: var(--color-ink);
 }
 
-.section-stack {
-  border-top: 1px solid var(--color-line);
-}
-
-.content-section {
-  padding-block: clamp(2.5rem, 4vw, 3rem);
-  border-bottom: 1px solid var(--color-line);
-}
-
 .section-label {
   margin-bottom: 1.5rem;
 }
@@ -143,12 +166,6 @@ h1 {
   list-style: none;
 }
 
-.entry + .entry {
-  margin-top: 2rem;
-  padding-top: 2rem;
-  border-top: 1px solid var(--color-line);
-}
-
 .entry-heading {
   display: flex;
   align-items: baseline;
@@ -156,6 +173,7 @@ h1 {
   gap: 1.5rem;
 }
 
+.entry h2,
 .entry h3 {
   color: var(--color-ink);
   font-size: 1rem;
@@ -247,119 +265,26 @@ h1 {
   display: flex;
   justify-content: space-between;
   gap: 2rem;
-  padding-top: 2rem;
   color: var(--color-faint);
   font-family: var(--font-sans);
   font-size: 0.625rem;
   letter-spacing: 0.02em;
 }
 
-.article-page-shell {
-  display: flex;
-  flex-direction: column;
-  min-height: 100svh;
-}
-
-.article-page-shell > .site-footer {
-  margin-top: auto;
-}
-
-.collection-header {
-  padding-bottom: clamp(2.5rem, 4vw, 3rem);
-}
-
-.quiet-link {
-  color: var(--color-muted);
-  font-size: 0.8125rem;
-  transition: color 160ms ease;
-}
-
-.quiet-link:hover {
-  color: var(--color-ink);
-}
-
-.collection-title {
-  margin-top: 2.5rem;
-}
-
-.article-index {
-  border-block: 1px solid var(--color-line);
-}
-
-.article-list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.article-list-item {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: baseline;
-  gap: 2rem;
-  padding-block: 1.75rem;
-}
-
-.article-list-item + .article-list-item {
-  border-top: 1px solid var(--color-line);
-}
-
-.article-list-item h2 {
-  font-size: 1rem;
-  font-weight: 500;
-  letter-spacing: -0.015em;
-  line-height: 1.5;
-}
-
-.article-list-link {
-  transition: color 160ms ease;
-}
-
-.article-list-link:hover {
-  color: var(--color-muted);
-}
-
-.article-list-item time,
-.article-published {
-  color: var(--color-faint);
-  font-size: 0.6875rem;
-  font-variant-numeric: tabular-nums;
-  letter-spacing: 0.025em;
-}
-
-.article-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.5rem;
-  padding-bottom: clamp(2.5rem, 4vw, 3rem);
-}
-
-.article-header {
-  padding-bottom: clamp(2.5rem, 4vw, 3rem);
-  border-bottom: 1px solid var(--color-line);
-}
-
+/* An article's title wraps where the name never does, so it gets the h1
+   with a little lead between the lines. The date sits where the identity
+   line sits under the name. */
 .article-title {
-  margin-top: 1.25rem;
-  font-size: clamp(1.875rem, 4.5vw, 2.5rem);
-  line-height: 1.12;
-  letter-spacing: -0.045em;
-}
-
-.article-published {
-  display: block;
-  margin-top: 1.5rem;
+  line-height: 1.1;
 }
 
 .article-body {
   --article-block-space: 1.5rem;
-  --article-section-space: clamp(2.75rem, 6vw, 3.5rem);
-  padding-top: clamp(2.5rem, 4vw, 3rem);
+  --article-section-space: 3rem;
   color: var(--color-muted);
-  font-size: clamp(1rem, 0.96rem + 0.2vw, 1.0625rem);
-  line-height: 1.8;
-  letter-spacing: -0.008em;
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  letter-spacing: -0.01em;
 }
 
 .article-body > * + * {
@@ -427,9 +352,9 @@ h1 {
 }
 
 .article-footer {
-  margin-top: clamp(2.5rem, 4vw, 3rem);
-  padding-top: 2rem;
-  border-top: 1px solid var(--color-line);
+  margin-top: var(--rule-space);
+  color: var(--color-muted);
+  font-size: 0.8125rem;
 }
 
 .skip-link {
@@ -461,17 +386,13 @@ h1 {
 }
 
 @media (max-width: 32rem) {
+  :root {
+    --rule-space: 2.25rem;
+  }
+
   .page-shell {
     width: min(100% - 2rem, 46rem);
     padding-top: 2.5rem;
-  }
-
-  .site-header {
-    padding-bottom: 2.25rem;
-  }
-
-  .content-section {
-    padding-block: 2.5rem;
   }
 
   .entry-heading,
@@ -481,18 +402,8 @@ h1 {
     gap: 0.35rem;
   }
 
-  .article-list-item {
-    grid-template-columns: 1fr;
-    gap: 0.4rem;
-  }
-
   .article-title {
-    font-size: clamp(1.75rem, 8vw, 2.25rem);
-  }
-
-  .entry + .entry {
-    margin-top: 1.75rem;
-    padding-top: 1.75rem;
+    font-size: 1.75rem;
   }
 }
 
