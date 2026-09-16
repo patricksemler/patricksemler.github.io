@@ -30,7 +30,7 @@ export const bio: readonly BioPart[] = [
   {
     text: " who likes building software for problems I run into. I work on full-stack products at ",
   },
-  { text: "Apply Finch" },
+  { text: "Finch", href: "https://applyfinch.com" },
   {
     text: " and research tools at A&M, and I spend my own time building ",
   },
@@ -150,7 +150,7 @@ export const experience: readonly Role[] = [
     link: null,
   },
   {
-    company: "Apply Finch",
+    company: "Finch",
     title: "Full-Stack Developer",
     start: "2026-01",
     end: "now",
@@ -164,7 +164,7 @@ export const experience: readonly Role[] = [
       "Supabase",
       "Cloudflare Workers",
     ],
-    link: null,
+    link: "https://applyfinch.com",
   },
   {
     company: "Maroon Fund",

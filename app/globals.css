@@ -170,15 +170,17 @@ h1 {
   gap: 0.5rem;
 }
 
-.corner-arrow {
+.corner-arrow,
+.company-arrow {
   color: var(--color-faint);
   font-size: 0.9em;
   transition: transform 160ms ease, color 160ms ease;
 }
 
-.entry-link:hover .corner-arrow {
+.entry-link:hover .corner-arrow,
+.entry-subtitle-link:hover .company-arrow {
   color: var(--color-muted);
-  transform: translate(2px, -2px);
+  transform: translate(1px, -1px);
 }
 
 .entry-date {
@@ -198,6 +200,17 @@ h1 {
   margin-top: 0.15rem;
   color: var(--color-muted);
   font-size: 0.8125rem;
+}
+
+.entry-subtitle-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: color 160ms ease;
+}
+
+.entry-subtitle-link:hover {
+  color: var(--color-ink);
 }
 
 .entry-body {

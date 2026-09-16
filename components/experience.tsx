@@ -11,7 +11,7 @@ export function Experience() {
           <Entry
             key={`${role.company}-${role.start}`}
             title={role.title}
-            href={role.link}
+            href={null}
             meta={
               <p className="entry-date">
                 {role.start}
@@ -20,7 +20,23 @@ export function Experience() {
               </p>
             }
             subtitle={
-              <p className="entry-subtitle">{role.company}</p>
+              <p className="entry-subtitle">
+                {role.link ? (
+                  <a
+                    href={role.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="entry-subtitle-link"
+                  >
+                    {role.company}
+                    <span aria-hidden className="company-arrow">
+                      ↗
+                    </span>
+                  </a>
+                ) : (
+                  role.company
+                )}
+              </p>
             }
             /* One line, not three bullets. The bulleted version is the
                résumé's job, and printing it twice is what made this page a
