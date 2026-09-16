@@ -265,7 +265,7 @@ h1 {
 }
 
 .collection-header {
-  padding-bottom: clamp(2.5rem, 6vw, 4.5rem);
+  padding-bottom: clamp(2.5rem, 4vw, 3rem);
 }
 
 .quiet-link {
@@ -332,11 +332,11 @@ h1 {
   align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
-  padding-bottom: clamp(3.5rem, 8vw, 6rem);
+  padding-bottom: clamp(2.5rem, 4vw, 3rem);
 }
 
 .article-header {
-  padding-bottom: clamp(2.5rem, 5vw, 3.5rem);
+  padding-bottom: clamp(2.5rem, 4vw, 3rem);
   border-bottom: 1px solid var(--color-line);
 }
 
@@ -355,7 +355,7 @@ h1 {
 .article-body {
   --article-block-space: 1.5rem;
   --article-section-space: clamp(2.75rem, 6vw, 3.5rem);
-  padding-top: clamp(2.75rem, 6vw, 4.5rem);
+  padding-top: clamp(2.5rem, 4vw, 3rem);
   color: var(--color-muted);
   font-size: clamp(1rem, 0.96rem + 0.2vw, 1.0625rem);
   line-height: 1.8;
@@ -427,7 +427,7 @@ h1 {
 }
 
 .article-footer {
-  margin-top: clamp(4rem, 9vw, 7rem);
+  margin-top: clamp(2.5rem, 4vw, 3rem);
   padding-top: 2rem;
   border-top: 1px solid var(--color-line);
 }
