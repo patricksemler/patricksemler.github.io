@@ -49,7 +49,7 @@ export const articles: readonly Article[] = [
       },
       {
         type: "paragraph",
-        text: "We were building a fitness app that would let someone upload a video of an exercise, analyze the movement, and return feedback on their form. I owned the frontend, while a teammate worked on the backend and computer vision. We were also using Kiro, AWS's agentic coding IDE, and because agentic coding was still new to us, we assumed the difficult part was generating the individual pieces. Once those pieces existed, connecting them felt like something the agent could handle for us.",
+        text: "We were building a fitness app that would let someone upload a video of an exercise, analyze the movement, and return feedback on their form. I worked on the frontend, while a teammate worked on the backend and computer vision. We were making use of Kiro, AWS's agentic coding IDE, and because agentic coding was still new to us, we assumed the difficult part was generating the individual pieces. Once those pieces existed, connecting them felt like something the agent could handle for us.",
       },
       {
         type: "heading",
@@ -85,7 +85,7 @@ export const articles: readonly Article[] = [
       },
       {
         type: "paragraph",
-        text: 'The lesson I took from that weekend was larger than "plan your APIs first."',
+        text: 'The lesson I took from that weekend was larger than "plan out your APIs first."',
       },
       {
         type: "paragraph",
@@ -124,7 +124,7 @@ export const articles: readonly Article[] = [
       },
       {
         type: "paragraph",
-        text: 'This approach also gives every member of a team meaningful work. At HowdyHack, dividing the project into "frontend" and "backend" left our other teammates with relatively little engineering work while we struggled with integration. Starting from a working baseline would have let us split by features instead.',
+        text: 'This approach also gives every member of a team meaningful work. At HowdyHack, dividing the project into "frontend" and "backend" left our other teammates with relatively little engineering work while we struggled with integration. Starting from a working baseline would have let us split by features instead, increasing overall productivity.',
       },
       {
         type: "heading",
@@ -144,7 +144,7 @@ export const articles: readonly Article[] = [
       },
       {
         type: "paragraph",
-        text: "I used AI to research possible scoring factors, challenge the logic, consider drawbacks, and turn the resulting decisions into an implementation plan. The final system considers factors such as eligibility, fit, recency, and network signals, then gives users plain-language explanations for the ranking. After the implementation was generated, I reviewed the code and asked for explanations where I needed them.",
+        text: "I used AI to research possible scoring factors, challenge the logic, consider drawbacks, and turn the resulting decisions into an implementation plan. The final system considers factors such as eligibility, fit, recency, and network signals, then gives users explanations for the ranking. After the implementation was generated, I reviewed the code and asked for explanations where I needed them.",
       },
       {
         type: "paragraph",
