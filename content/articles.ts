@@ -136,7 +136,7 @@ export const articles: readonly Article[] = [
       },
       {
         type: "paragraph",
-        text: 'While working on ApplyFinch\'s job-priority ranking, for example, I could have asked an agent to "build a better matching algorithm." Instead, I first had to decide what better matching actually meant.',
+        text: 'While working on Finch\'s job-priority ranking, for example, I could have asked an agent to "build a better matching algorithm." Instead, I first had to decide what better matching actually meant.',
       },
       {
         type: "paragraph",
