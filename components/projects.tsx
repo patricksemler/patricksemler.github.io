@@ -6,7 +6,7 @@ export function Projects() {
   return (
     <Section id="projects" label="Projects">
       {/* Unordered — the arrangement is editorial, not a ranking. */}
-      <ul className="-my-3 flex flex-col gap-4">
+      <ul className="entry-list">
         {projects.map((project) => (
           <Entry
             key={project.name}

@@ -31,7 +31,7 @@ export function Entry({
   stackLabel: string;
 }) {
   return (
-    <li className="entry group">
+    <li className="entry">
       {/* Stacked on narrow screens. Left to wrap, the date sits beside short
           titles and under long ones, so the column of dates moves from entry
           to entry; it only shares the line once there is reliably room for
@@ -41,10 +41,8 @@ export function Entry({
           and nothing on this line may run under it. Only where there is an
           arrow, though: reserved unconditionally it pulls the date range in
           from the column edge on every entry to make room for nothing. */}
-      <div
-        className={`flex flex-col gap-1 sm:flex-row sm:flex-wrap sm:items-baseline sm:justify-between sm:gap-x-8 ${href ? "pr-7" : ""}`}
-      >
-        <h3 className="aberrate text-[1rem] font-medium text-ink">
+      <div className="entry-heading">
+        <h3>
           {href ? (
             /* Only the title is the link, and only the title is its accessible
                name — the box-wide hit area is a bare rectangle drawn by CSS,
@@ -60,6 +58,7 @@ export function Entry({
               className="entry-link"
             >
               {title}
+              <CornerArrow />
             </a>
           ) : (
             title
@@ -68,12 +67,9 @@ export function Entry({
         {meta}
       </div>
 
-      {href && <CornerArrow />}
       {subtitle}
 
-      <p
-        className={`${subtitle ? "mt-4" : "mt-2.5"} font-sans text-[1rem] leading-[1.7] text-dim`}
-      >
+      <p className={`entry-body ${subtitle ? "with-subtitle" : ""}`}>
         <Metrics text={body} />
       </p>
 
@@ -98,10 +94,7 @@ export function Entry({
  */
 function CornerArrow() {
   return (
-    <span
-      aria-hidden
-      className="absolute top-[calc(0.75rem-1px)] right-[calc(1rem-1px)] flex h-[1.65rem] items-center text-[1.15rem] leading-none text-faint transition-colors group-hover:text-cyan"
-    >
+    <span aria-hidden className="corner-arrow">
       ↗
     </span>
   );
