@@ -10,8 +10,18 @@ export function Intro() {
           <p className="identity-line">{`Texas A&M CS ’28 · ${profile.location}`}</p>
         </div>
 
-        <nav aria-label="Profile links">
+        <nav aria-label="Contact and profile links">
           <ul className="profile-links">
+            <li>
+              <a
+                href={`mailto:${profile.email}`}
+                aria-label={`Email ${profile.name}`}
+                className="text-link"
+              >
+                Email
+                <Arrow />
+              </a>
+            </li>
             {links.map((link) => {
               const external = link.href.startsWith("http");
               return (
@@ -54,10 +64,6 @@ export function Intro() {
               ),
             )}
           </p>
-          <a href={`mailto:${profile.email}`} className="email-link">
-            {profile.email}
-            <span aria-hidden>↗</span>
-          </a>
         </div>
       </div>
     </header>

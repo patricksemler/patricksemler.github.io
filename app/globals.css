@@ -46,7 +46,7 @@ a {
 }
 
 .site-header {
-  padding-bottom: clamp(4.5rem, 9vw, 7rem);
+  padding-bottom: clamp(2.25rem, 3.5vw, 2.75rem);
 }
 
 h1 {
@@ -73,16 +73,17 @@ h1 {
 
 .text-link,
 .inline-link,
-.email-link,
 .entry-link {
   transition: color 160ms ease;
 }
 
-.text-link:hover,
 .inline-link:hover,
-.email-link:hover,
 .entry-link:hover {
   color: var(--color-muted);
+}
+
+.text-link:hover {
+  color: var(--color-ink);
 }
 
 .arrow {
@@ -94,7 +95,7 @@ h1 {
 }
 
 .intro-grid {
-  margin-top: clamp(3.75rem, 8vw, 5.75rem);
+  margin-top: clamp(2rem, 4vw, 2.5rem);
 }
 
 .eyebrow,
@@ -123,32 +124,17 @@ h1 {
   color: var(--color-ink);
 }
 
-.email-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  margin-top: 1.75rem;
-  padding-bottom: 0.15rem;
-  border-bottom: 1px solid var(--color-line);
-  color: var(--color-ink);
-  font-size: 0.875rem;
-}
-
-.email-link span {
-  color: var(--color-faint);
-}
-
 .section-stack {
   border-top: 1px solid var(--color-line);
 }
 
 .content-section {
-  padding-block: clamp(3.5rem, 7vw, 5.25rem);
+  padding-block: clamp(2.5rem, 4vw, 3rem);
   border-bottom: 1px solid var(--color-line);
 }
 
 .section-label {
-  margin-bottom: 2.25rem;
+  margin-bottom: 1.5rem;
 }
 
 .entry-list {
@@ -297,11 +283,11 @@ h1 {
   }
 
   .site-header {
-    padding-bottom: 4rem;
+    padding-bottom: 2.25rem;
   }
 
   .content-section {
-    padding-block: 3.5rem;
+    padding-block: 2.5rem;
   }
 
   .entry-heading,
