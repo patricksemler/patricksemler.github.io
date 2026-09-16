@@ -18,7 +18,7 @@ export default function ArticlesPage() {
       <div className="page-shell article-page-shell">
         <header className="collection-header">
           <Link href="/" className="quiet-link">
-            {profile.name}
+            ← Back home
           </Link>
           <h1 className="collection-title">Articles</h1>
         </header>
@@ -45,9 +45,6 @@ export default function ArticlesPage() {
 
         <footer className="site-footer">
           <p>© {new Date().getFullYear()} {profile.name}</p>
-          <Link href="/" className="quiet-link">
-            Home
-          </Link>
         </footer>
       </div>
     </>
