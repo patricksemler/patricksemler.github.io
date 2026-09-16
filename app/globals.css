@@ -174,13 +174,6 @@ h1 {
 .company-arrow {
   color: var(--color-faint);
   font-size: 0.9em;
-  transition: transform 160ms ease, color 160ms ease;
-}
-
-.entry-link:hover .corner-arrow,
-.entry-subtitle-link:hover .company-arrow {
-  color: var(--color-muted);
-  transform: translate(1px, -1px);
 }
 
 .entry-date {
