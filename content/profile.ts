@@ -25,7 +25,7 @@ export const profile = {
 type BioPart = { text: string; href?: string };
 
 export const bio: readonly BioPart[] = [
-  { text: "I'm a computer science student at " },
+  { text: "I'm a Computer Science student at " },
   { text: "Texas A&M", href: "https://www.tamu.edu" },
   {
     text: " who likes building software for problems I run into. I work on full-stack products at ",
