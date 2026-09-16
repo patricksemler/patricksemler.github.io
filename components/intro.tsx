@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { bio, links, profile } from "@/content/profile";
 import { Arrow } from "./section";
 
@@ -12,6 +13,14 @@ export function Intro() {
 
         <nav aria-label="Contact and profile links">
           <ul className="profile-links">
+            <li>
+              <Link href="/articles" className="text-link">
+                Articles
+                <span aria-hidden className="arrow">
+                  →
+                </span>
+              </Link>
+            </li>
             <li>
               <a
                 href={`mailto:${profile.email}`}
