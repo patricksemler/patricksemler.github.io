@@ -82,6 +82,20 @@ h1 {
   font-size: 0.875rem;
 }
 
+.header-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.header-link {
+  flex: none;
+  color: var(--color-muted);
+  font-size: 0.8125rem;
+  white-space: nowrap;
+}
+
 .profile-links {
   display: flex;
   flex-wrap: wrap;
