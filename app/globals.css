@@ -7,7 +7,6 @@
   --color-faint: #707070;
   --color-line: #262626;
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 }
 
 :root {
@@ -51,7 +50,7 @@ a {
 }
 
 h1 {
-  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-size: clamp(2rem, 4.25vw, 2.75rem);
   font-weight: 500;
   line-height: 1;
   letter-spacing: -0.055em;
@@ -101,7 +100,7 @@ h1 {
 .eyebrow,
 .section-label {
   color: var(--color-faint);
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.6875rem;
   font-weight: 400;
   letter-spacing: 0.1em;
@@ -159,8 +158,8 @@ h1 {
 }
 
 .entry + .entry {
-  margin-top: 2.75rem;
-  padding-top: 2.75rem;
+  margin-top: 2rem;
+  padding-top: 2rem;
   border-top: 1px solid var(--color-line);
 }
 
@@ -199,7 +198,7 @@ h1 {
 .entry-date {
   flex: none;
   color: var(--color-faint);
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.6875rem;
   font-variant-numeric: tabular-nums;
   letter-spacing: 0.025em;
@@ -237,7 +236,7 @@ h1 {
   gap: 0.2rem 0.55rem;
   margin-top: 1.25rem;
   color: var(--color-faint);
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.6875rem;
   line-height: 1.6;
   list-style: none;
@@ -258,7 +257,7 @@ h1 {
   gap: 2rem;
   padding-top: 2rem;
   color: var(--color-faint);
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 0.625rem;
   letter-spacing: 0.02em;
 }
@@ -313,8 +312,8 @@ h1 {
   }
 
   .entry + .entry {
-    margin-top: 2.25rem;
-    padding-top: 2.25rem;
+    margin-top: 1.75rem;
+    padding-top: 1.75rem;
   }
 }
 
