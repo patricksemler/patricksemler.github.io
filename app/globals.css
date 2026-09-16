@@ -47,9 +47,21 @@ a {
 }
 
 .page-shell {
+  display: flex;
+  flex-direction: column;
   width: min(100% - 3rem, 46rem);
+  min-height: 100svh;
   margin-inline: auto;
   padding-block: clamp(3rem, 7vw, 6.5rem) var(--rule-space);
+}
+
+/* The footer follows the content, but never sits above the bottom of the
+   window: on a page too short to fill it — the index while there are few
+   articles — the main block grows to take up the slack, so the footer's
+   rule keeps its usual distance from the content on long pages and is
+   pushed to the bottom on short ones. */
+.page-shell > main {
+  flex: 1 0 auto;
 }
 
 /* Every rule is the top edge of the block beneath it, with the same space
