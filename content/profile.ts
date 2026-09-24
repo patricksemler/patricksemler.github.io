@@ -35,8 +35,10 @@ export const bio: readonly BioPart[] = [
     text: " and research tools at A&M, and I spend my own time building ",
   },
   { text: "LeetMind", href: "https://leetmind.patricksemler.dev" },
+  { text: " and " },
+  { text: "LiftLedger", href: "https://liftledger.patricksemler.dev" },
   {
-    text: " and LiftLedger. I still enjoy the same part of programming that hooked me early on: figuring out why something broke and making it work better the next time.",
+    text: ". I still enjoy the same part of programming that hooked me early on: figuring out why something broke and making it work better the next time.",
   },
 ];
 
@@ -70,7 +72,7 @@ export const projects: readonly Project[] = [
   {
     name: "LeetMind",
     blurb:
-      "I built LeetMind because I wanted coding practice that focused on the topics I was actually weak at. It chooses and generates problems from each learner's history, then checks every generated problem with authored tests, an independent solution, and 50 reproducible randomized inputs before publishing it. Python and C++ submissions run in isolated Docker containers without access to the network, hidden tests, or expected answers.",
+      "I built LeetMind because I wanted coding practice that focused on the topics I was actually weak at. It tracks Elo ratings across 20 algorithm concepts and generates problems aimed at each learner's gaps, then checks every generated problem with authored tests, an independent solution, and 50 reproducible randomized inputs before publishing it. Python and C++ submissions run in isolated Docker containers without access to the network, hidden tests, or expected answers.",
     stack: [
       "TypeScript",
       "Python",
@@ -85,16 +87,16 @@ export const projects: readonly Project[] = [
   {
     name: "LiftLedger",
     blurb:
-      "I built LiftLedger to make workout and nutrition tracking feel less like data entry. Its React dashboard and Telegram assistant turn text, voice messages, and food photos into structured logs that users approve before saving. It also pulls in Hevy workout history to chart set counts and training trends across exercises and muscle groups.",
+      "I built LiftLedger to make workout and nutrition tracking feel less like data entry. One dashboard combines Hevy workouts, Apple Health, and meals logged over Telegram, with a muscle-heatmap body chart, goal tracking, and a tool-calling AI assistant. The Telegram logger turns meal photos and text into calorie and macro entries, grounding the values in USDA data.",
     stack: [
       "TypeScript",
-      "Node.js",
-      "Fastify",
       "React",
+      "Hono",
       "PostgreSQL",
-      "Docker",
+      "Vercel AI SDK",
+      "Vercel",
     ],
-    link: null,
+    link: "https://liftledger.patricksemler.dev",
   },
 ];
 
@@ -127,7 +129,7 @@ export const experience: readonly Role[] = [
     start: "2026-08",
     end: "now",
     summary:
-      "Built an interactive React and TypeScript platform for exploring U.S. beef supply-chain scenarios, replacing a spreadsheet prototype with a model of independent businesses, mortality, biological variation, inventory, market prices, and sensitivity analysis.",
+      "Built a five-stage U.S. beef supply-chain simulator with weighted representative agents that runs 30 million head over 10 years and 250 trials in under 0.6 seconds, fed by an automated pipeline that turns 179,206 rows from four USDA ERS sources into 11 annual profiles.",
     stack: ["React", "TypeScript"],
     link: null,
   },
@@ -137,7 +139,7 @@ export const experience: readonly Role[] = [
     start: "2026-06",
     end: "2026-08",
     summary:
-      "Reduced a veterinary classifier's peak memory use by 74%, from 2.6 GB to 689 MB, while preserving 90.83% accuracy. Also built a Python and Django RAG pipeline with Voyage embeddings and Supabase pgvector to ground Gemini care plans in cited sources.",
+      "Cut a veterinary classifier's peak memory use by 74%, from 2.6 GB to 689 MB, so it could deploy on Vercel while keeping 90.83% accuracy. Also built a RAG pipeline with Voyage embeddings, Supabase pgvector, and dual-query reciprocal-rank fusion that retrieves the correct source nearly 1.5× as often as single-query search.",
     stack: [
       "Python",
       "Django",
@@ -151,11 +153,11 @@ export const experience: readonly Role[] = [
   },
   {
     company: "Finch",
-    title: "Full-Stack Developer",
+    title: "Software Engineer Intern",
     start: "2026-01",
     end: "now",
     summary:
-      "Built job-ranking and tailored application workflows for a platform with 200+ registered users, then made long-running application jobs recoverable with persisted snapshots, retries, deduplication, and coordinated cancellation.",
+      "Rebuilt onboarding as a resume-first flow alongside a new job board, cutting signup-to-dashboard time ~99% in automated testing, and built a job-matching pipeline that ranks jobs by fit, recency, and network signals with tailored resumes and cover letters.",
     stack: [
       "React",
       "TypeScript",
@@ -165,15 +167,5 @@ export const experience: readonly Role[] = [
       "Cloudflare Workers",
     ],
     link: "https://applyfinch.com",
-  },
-  {
-    company: "Maroon Fund",
-    title: "Quantitative Developer",
-    start: "2026-02",
-    end: "2026-05",
-    summary:
-      "Added Jensen's alpha, OLS beta, and tracking error to strategy backtests using SPY data from a three-source fallback pipeline, then combined six separate charts into one interactive Plotly report.",
-    stack: ["Python", "pandas", "Plotly", "pytest"],
-    link: null,
   },
 ];
