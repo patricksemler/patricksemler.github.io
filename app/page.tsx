@@ -1,5 +1,6 @@
 import { SiteFooter } from "@/components/chrome";
 import { Experience } from "@/components/experience";
+import { Leadership } from "@/components/leadership";
 import { Intro } from "@/components/intro";
 import { Projects } from "@/components/projects";
 
@@ -16,6 +17,7 @@ export default function Home() {
         <main id="main">
           <Projects />
           <Experience />
+          <Leadership />
         </main>
 
         <SiteFooter />

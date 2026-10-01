@@ -73,7 +73,7 @@ export function Entry({
         <Metrics text={body} />
       </p>
 
-      <TagList items={stack} label={stackLabel} />
+      {stack.length > 0 && <TagList items={stack} label={stackLabel} />}
     </li>
   );
 }

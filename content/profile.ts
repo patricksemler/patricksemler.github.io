@@ -169,3 +169,34 @@ export const experience: readonly Role[] = [
     link: "https://applyfinch.com",
   },
 ];
+
+/* --------------------------------------------------------------------------
+ * Leadership. Student orgs and other unpaid roles, kept apart from
+ * experience so they never sit above a job in its timeline. Newest first,
+ * same date rules as experience, one line each.
+ *
+ * `skills` is optional tagging; leave it empty and the row is omitted.
+ * `link` points the organization name outward, or null for plain text.
+ * ----------------------------------------------------------------------- */
+type LeadershipRole = {
+  organization: string;
+  title: string;
+  start: string;
+  end: string;
+  summary: string;
+  skills: readonly string[];
+  link: string | null;
+};
+
+export const leadership: readonly LeadershipRole[] = [
+  {
+    organization: "Product@TAMU",
+    title: "Project Lead",
+    start: "2026-09",
+    end: "now",
+    summary:
+      "Lead a team of 5 designing a cross-device feature for multi-device Apple users in an Apple vs. Samsung product case competition between 8 teams.",
+    skills: [],
+    link: "https://tamuproduct.org/",
+  },
+];
