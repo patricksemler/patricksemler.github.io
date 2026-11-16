@@ -177,6 +177,8 @@ export const experience: readonly Role[] = [
  *
  * `skills` is optional tagging; leave it empty and the row is omitted.
  * `link` points the organization name outward, or null for plain text.
+ * `href` points the title at the work itself (a live product), or null to
+ * leave the title as plain text.
  * ----------------------------------------------------------------------- */
 type LeadershipRole = {
   organization: string;
@@ -186,17 +188,19 @@ type LeadershipRole = {
   summary: string;
   skills: readonly string[];
   link: string | null;
+  href: string | null;
 };
 
 export const leadership: readonly LeadershipRole[] = [
   {
     organization: "Product@TAMU",
-    title: "Project Lead",
+    title: "Project Lead, Spaces",
     start: "2026-09",
     end: "now",
     summary:
-      "Lead a team of 5 designing a cross-device feature for multi-device Apple users in an Apple vs. Samsung product case competition between 8 teams.",
-    skills: [],
+      "Lead a team of 5 in an Apple vs. Samsung product case competition between 8 teams, answering Apple's Seamless Ecosystem prompt with Spaces: a temporary space that starts in a Messages group chat so friends can plan and run one hangout across their iPhones and a shared Apple TV. Friends join in one tap and pick times on the invite card, the plan and a shared cost split update live for everyone, and location sharing stays off by default and shuts itself off when the hangout ends. Wrote the PRD, scoped the MVP with our mentor, and led the team through research, prototyping, and the final submission.",
+    skills: ["Product Management", "PRDs", "User Research", "Prototyping"],
     link: "https://tamuproduct.org/",
+    href: "https://spaces.patricksemler.dev",
   },
 ];

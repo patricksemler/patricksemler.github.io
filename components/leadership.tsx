@@ -11,7 +11,7 @@ export function Leadership() {
           <Entry
             key={`${role.organization}-${role.start}`}
             title={role.title}
-            href={null}
+            href={role.href}
             meta={
               <p className="entry-date">
                 {role.start}
