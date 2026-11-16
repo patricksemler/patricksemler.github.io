@@ -196,9 +196,9 @@ export const leadership: readonly LeadershipRole[] = [
     organization: "Product@TAMU",
     title: "Project Lead, Spaces",
     start: "2026-09",
-    end: "now",
+    end: "2026-11",
     summary:
-      "Lead a team of 5 in an Apple vs. Samsung product case competition between 8 teams, answering Apple's Seamless Ecosystem prompt with Spaces: a temporary space that starts in a Messages group chat so friends can plan and run one hangout across their iPhones and a shared Apple TV. Friends join in one tap and pick times on the invite card, the plan and a shared cost split update live for everyone, and location sharing stays off by default and shuts itself off when the hangout ends. Wrote the PRD, scoped the MVP with our mentor, and led the team through research, prototyping, and the final submission.",
+      "Led a team of 5 in an Apple vs. Samsung case competition between 8 teams with Spaces: a temporary space, started from a Messages group chat, where friends plan one hangout across their iPhones and a shared Apple TV before sharing turns itself off. Wrote the PRD and scoped the MVP.",
     skills: ["Product Management", "PRDs", "User Research", "Prototyping"],
     link: "https://tamuproduct.org/",
     href: "https://spaces.patricksemler.dev",
