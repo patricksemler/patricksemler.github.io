@@ -27,19 +27,7 @@ type BioPart = { text: string; href?: string };
 export const bio: readonly BioPart[] = [
   { text: "I'm a Computer Science student at " },
   { text: "Texas A&M", href: "https://www.tamu.edu" },
-  {
-    text: " who likes building software for problems I run into. I work on full-stack products at ",
-  },
-  { text: "Finch", href: "https://applyfinch.com" },
-  {
-    text: " and research tools at A&M, and I spend my own time building ",
-  },
-  { text: "LeetMind", href: "https://leetmind.patricksemler.dev" },
-  { text: " and " },
-  { text: "LiftLedger", href: "https://liftledger.patricksemler.dev" },
-  {
-    text: ". I still enjoy the same part of programming that hooked me early on: figuring out why something broke and making it work better the next time.",
-  },
+  { text: " interested in building AI-powered products." },
 ];
 
 /* --------------------------------------------------------------------------
