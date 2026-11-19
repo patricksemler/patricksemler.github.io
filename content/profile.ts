@@ -201,7 +201,7 @@ export const leadership: readonly LeadershipRole[] = [
     start: "2026-11",
     end: "now",
     summary:
-      "Plan and teach hands-on AI and machine learning workshops for rooms of tens of students in the weekly series at TIDAL, Texas A&M's 1,400+ member AI/ML organization and last year's Adair Student Organization of the Year. I also help run its hackathon, TIDALHACK, on the day: setup, teardown, and answering hackers' questions at events that draw 500+ hackers and have given out $33,000+ in prizes.",
+      "Plan and teach hands-on AI and machine learning workshops for rooms of tens of students in the weekly series at TIDAL, Texas A&M's 1,400+ member AI/ML organization and last year's Adair Student Organization of the Year. Also help run its hackathon, TIDALHACK, on the day: setup, teardown, and answering hackers' questions at events that draw 500+ hackers and have given out $33,000+ in prizes.",
     skills: ["Technical Teaching", "Workshop Design", "Event Operations"],
     link: "https://tidaltamu.com/",
     href: null,
