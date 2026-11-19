@@ -179,6 +179,8 @@ export const experience: readonly Role[] = [
  * `link` points the organization name outward, or null for plain text.
  * `href` points the title at the work itself (a live product), or null to
  * leave the title as plain text.
+ * `award` is a placing or prize, shown beside the organization; its `href`
+ * points at the results page, or null for plain text. Null for none.
  * ----------------------------------------------------------------------- */
 type LeadershipRole = {
   organization: string;
@@ -189,6 +191,7 @@ type LeadershipRole = {
   skills: readonly string[];
   link: string | null;
   href: string | null;
+  award: { label: string; href: string | null } | null;
 };
 
 export const leadership: readonly LeadershipRole[] = [
@@ -198,9 +201,10 @@ export const leadership: readonly LeadershipRole[] = [
     start: "2026-09",
     end: "2026-11",
     summary:
-      "Led a team of 5 in an Apple vs. Samsung product case competition between 8 teams, answering Apple's Seamless Ecosystem prompt with Spaces: a temporary space that starts in a Messages group chat so friends can plan and run one hangout across their iPhones and a shared Apple TV. Friends join in one tap and pick times on the invite card, the plan and a shared cost split update live for everyone, and location sharing stays off by default and shuts itself off when the hangout ends. Wrote the PRD, scoped the MVP with our mentor, and led the team through research, prototyping, and the final submission.",
+      "Led a team of 5 to 2nd place out of 8 in an Apple vs. Samsung product case competition with Spaces, a concept built on one idea: Apple devices adapt to each person but not to a group, so a Space gives a friend group one shared layer across their devices that runs a plan and turns itself off when it's over. Set the direction and took the team through research and scoping, then wrote the PRD and built the demo: one hangout planned from a Messages group chat and run across iPhones and a shared Apple TV.",
     skills: ["Product Management", "PRDs", "User Research", "Prototyping"],
     link: "https://tamuproduct.org/",
     href: "https://spaces.patricksemler.dev",
+    award: { label: "2nd place of 8 teams", href: null },
   },
 ];

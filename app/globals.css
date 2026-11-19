@@ -250,6 +250,17 @@ h1 {
   color: var(--color-ink);
 }
 
+/* A placing beside the organization: the one thing on the subtitle line
+   worth reading first, so it takes the ink colour the metrics use. */
+.subtitle-sep {
+  margin-inline: 0.5rem;
+  color: #414141;
+}
+
+.entry-award {
+  color: var(--color-ink);
+}
+
 .entry-body {
   margin-top: 0.75rem;
   color: var(--color-muted);

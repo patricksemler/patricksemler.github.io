@@ -36,6 +36,28 @@ export function Leadership() {
                 ) : (
                   role.organization
                 )}
+                {role.award && (
+                  <>
+                    <span aria-hidden className="subtitle-sep">
+                      ·
+                    </span>
+                    {role.award.href ? (
+                      <a
+                        href={role.award.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="entry-subtitle-link entry-award"
+                      >
+                        {role.award.label}
+                        <span aria-hidden className="company-arrow">
+                          ↗
+                        </span>
+                      </a>
+                    ) : (
+                      <span className="entry-award">{role.award.label}</span>
+                    )}
+                  </>
+                )}
               </p>
             }
             body={role.summary}

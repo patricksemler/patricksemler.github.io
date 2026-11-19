@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 /* Split on numeric tokens, keeping them, so figures can be picked out of a
    sentence. Two expressions because a global regex is stateful and `.test`
    on it would give different answers on alternate calls. */
-const SPLIT_ON_NUMBER = /(\$?\d+(?:[.,]\d+)*%?)/g;
+const SPLIT_ON_NUMBER = /(\$?\d+(?:[.,]\d+)*(?:%|(?:st|nd|rd|th)\b)?)/g;
 const IS_NUMBER = /^\$?\d/;
 
 /**
