@@ -27,7 +27,9 @@ type BioPart = { text: string; href?: string };
 export const bio: readonly BioPart[] = [
   { text: "I'm a Computer Science student at " },
   { text: "Texas A&M", href: "https://www.tamu.edu" },
-  { text: " interested in building AI-powered products." },
+  {
+    text: " interested in building AI-powered products that are useful and not just impressive.",
+  },
 ];
 
 /* --------------------------------------------------------------------------
