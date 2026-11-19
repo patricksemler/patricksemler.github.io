@@ -60,6 +60,11 @@ export const links = [
  * `link` is where the title points — the live site, or the repo if there is no
  * site. One destination, because a title can only carry one: leave it null and
  * the name renders as plain text with no arrow.
+ *
+ * `stack` (here and in Experience) lists named technologies only, never
+ * techniques like "RAG", in this order: languages, frameworks, data
+ * (PostgreSQL, plus Supabase when it hosts it), AI SDKs or models, then
+ * hosting.
  * ----------------------------------------------------------------------- */
 type Project = {
   name: string;
@@ -93,6 +98,7 @@ export const projects: readonly Project[] = [
       "React",
       "Hono",
       "PostgreSQL",
+      "Supabase",
       "Vercel AI SDK",
       "Vercel",
     ],
@@ -130,7 +136,13 @@ export const experience: readonly Role[] = [
     end: "now",
     summary:
       "Built a five-stage U.S. beef supply-chain simulator that shows where profit and risk land at each stage, from cow-calf to retail. Its weighted representative agents run 30 million head over 10 years and 250 Monte Carlo trials in under 0.6 seconds on 2015–2025 USDA market and cost data.",
-    stack: ["React", "TypeScript"],
+    stack: [
+      "TypeScript",
+      "React",
+      "Vercel AI SDK",
+      "Cloudflare Workers",
+      "Vercel",
+    ],
     link: null,
   },
   {
@@ -144,10 +156,12 @@ export const experience: readonly Role[] = [
       "Python",
       "Django",
       "scikit-learn",
+      "ONNX",
+      "PostgreSQL",
       "Supabase",
       "pgvector",
       "Gemini",
-      "RAG",
+      "Voyage AI",
     ],
     link: null,
   },
@@ -159,11 +173,13 @@ export const experience: readonly Role[] = [
     summary:
       "Rebuilt onboarding as a resume-first flow alongside a new job board, cutting signup-to-dashboard time ~99% in automated testing, and built a job-matching pipeline that ranks jobs by fit, recency, and network signals with tailored resumes and cover letters.",
     stack: [
-      "React",
       "TypeScript",
+      "Python",
+      "React",
       "Flask",
       "PostgreSQL",
       "Supabase",
+      "LangChain",
       "Cloudflare Workers",
     ],
     link: "https://applyfinch.com",
