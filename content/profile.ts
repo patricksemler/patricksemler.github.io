@@ -196,6 +196,18 @@ type LeadershipRole = {
 
 export const leadership: readonly LeadershipRole[] = [
   {
+    organization: "TIDAL",
+    title: "Workshops Officer",
+    start: "2026-11",
+    end: "now",
+    summary:
+      "Plan and teach hands-on AI and machine learning workshops for rooms of tens of students at TIDAL, a 500+ member AI organization at Texas A&M, and help run its hackathon, TIDALHACK, on the day: setup, teardown, and answering hackers' questions. The most recent TIDALHACK drew 234 registered hackers competing for $3,000+ in prizes.",
+    skills: ["Technical Teaching", "Workshop Design", "Event Operations"],
+    link: "https://getinvolved.tamu.edu/org/tidaltamu",
+    href: null,
+    award: null,
+  },
+  {
     organization: "Product@TAMU",
     title: "Project Lead, Spaces",
     start: "2026-09",
