@@ -129,7 +129,7 @@ export const experience: readonly Role[] = [
     start: "2026-08",
     end: "now",
     summary:
-      "Built a five-stage U.S. beef supply-chain simulator with weighted representative agents that runs 30 million head over 10 years and 250 trials in under 0.6 seconds, fed by an automated pipeline that turns 179,206 rows from four USDA ERS sources into 11 annual profiles.",
+      "Built a five-stage U.S. beef supply-chain simulator that shows where profit and risk land at each stage, from cow-calf to retail. Its weighted representative agents run 30 million head over 10 years and 250 Monte Carlo trials in under 0.6 seconds on 2015–2025 USDA market and cost data.",
     stack: ["React", "TypeScript"],
     link: null,
   },
