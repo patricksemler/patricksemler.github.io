@@ -275,6 +275,9 @@ h1 {
 
 .metric {
   color: var(--color-ink);
+  /* A figure now carries its unit ("2.6 GB"); breaking between them would
+     leave the number at the end of one line and its unit on the next. */
+  white-space: nowrap;
 }
 
 .tag-list {

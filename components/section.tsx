@@ -1,10 +1,19 @@
 import type { ReactNode } from "react";
 
-/* Split on numeric tokens, keeping them, so figures can be picked out of a
-   sentence. Two expressions because a global regex is stateful and `.test`
-   on it would give different answers on alternate calls. */
-const SPLIT_ON_NUMBER = /(\$?\d+(?:[.,]\d+)*(?:%|(?:st|nd|rd|th)\b)?)/g;
-const IS_NUMBER = /^\$?\d/;
+/* Split on figures, keeping them, so they can be picked out of a sentence.
+   A figure is the whole quantity, not just its digits: a leading `~` or `$`,
+   a range (`2015–2025`), a trailing `%`, `×`, `+` or ordinal, and a unit or
+   scale word after it — "10+ years", "2nd place", "2.6 GB", "30 million".
+   The noun being counted ("20 algorithm concepts") is not a unit and stays
+   out. Two expressions because a global regex is stateful and `.test` on it
+   would give different answers on alternate calls. */
+const NUMBER = String.raw`\d+(?:[.,]\d+)*`;
+const UNIT = String.raw`place|years?|months?|weeks?|days?|hours?|minutes?|seconds?|ms|[KMGT]B|thousand|million|billion`;
+const SPLIT_ON_NUMBER = new RegExp(
+  String.raw`([~$]?${NUMBER}(?:–${NUMBER})?(?:%|×|\+|(?:st|nd|rd|th)\b)?(?:\s(?:${UNIT})\b)?)`,
+  "g",
+);
+const IS_NUMBER = /^[~$]?\d/;
 
 /**
  * Prose with its figures pulled forward. Everything measurable in this
